@@ -15,11 +15,28 @@ public class GestorHoteles implements iGestionable<Hotel> {
 
     @Override
     public void alta(Hotel objeto) {
+     if(objeto==null)
+     {
+         throw new IllegalArgumentException("el hotel no puede ser nulo");
+     }else
+     {
+         hoteles.add(objeto);
+              System.out.println("hotel agregado exitosamente");
+     }
 
     }
 
     @Override
     public void baja(String id) {
+        Hotel aux=hoteles.get(id);
+        if(hotel==null)
+        {
+            throw new IllegalArgumentException("ese id no esta asociado a ningun hotel");
+        }else
+        {
+            hoteles.remove(id);
+                 System.out.println("hotel eliminado exitosamente exitosamente");
+        }
 
     }
 
@@ -38,3 +55,4 @@ public class GestorHoteles implements iGestionable<Hotel> {
         return null;
     }
 }
+
