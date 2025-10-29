@@ -16,16 +16,35 @@ public class GestorClientes implements iGestionable<Cliente> {
 
     @Override
     public void alta(Cliente objeto) {
+        if(cliente==null)
+        {
+            throw new IllegalArgumentException("el cliente no puede ser nulo");
+            
+        }else
+        {
+            clientes.add(objeto);
+            System.out.println("cliente agregado exitosamente");
+        }
 
     }
 
     @Override
     public void baja(String id) {
-
+     Cliente cliente=clientes.get(id);
+        if(cliente==null)
+        {
+             throw new IllegalArgumentException("ese ID no se encuentra asociado a ningun cliente");
+            
+        }else
+        {
+            clientes.remove(id);
+                 System.out.println("cliente eliminado exitosamente");
+        }
     }
 
     @Override
     public void modificar(Cliente objeto) {
+      
 
     }
 
@@ -39,3 +58,4 @@ public class GestorClientes implements iGestionable<Cliente> {
         return null;
     }
 }
+
