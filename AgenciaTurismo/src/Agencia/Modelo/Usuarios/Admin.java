@@ -17,8 +17,8 @@ public class Admin {
         this.username = username;
     }
 
-    public boolean confirmPassword(String password){
-        return this.password.equalsIgnoreCase(password);
+    public boolean validarPassword(String password) {
+        return this.password.equals(password);
     }
 
 }
