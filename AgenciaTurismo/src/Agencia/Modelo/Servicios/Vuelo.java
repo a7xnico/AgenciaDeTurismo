@@ -1,18 +1,26 @@
 package Agencia.Modelo.Servicios;
 
 public class Vuelo {
-  private String nuemeroDeVuelo;
-  private String cuidadOrigen;
-  private String cuidadDestino;
+  private String numeroDeVuelo;
+  private String ciudadOrigen;
+  private String ciudadDestino;
   private int cantPasajeros;
+  private double precio;
+  private String fecha;
   
-  public Vuelo(String numeroDeVuelo,String cuidadOrigen,String cuidadDestino, int cantPasajeros)
+  public Vuelo(String numeroDeVuelo,String ciudadOrigen,String ciudadDestino, int cantPasajeros, double precio, String fecha)
   {
-    this.numeroDeVuelo=numeroDeVuelo;
-    this.cuidadOrigen=cuidadOrigen;
-    this.cuidadDestino=cuidadDestino;
+    this.numeroDeVuelo =numeroDeVuelo;
+    this.ciudadOrigen=ciudadOrigen;
+    this.ciudadDestino=ciudadDestino;
     this.cantPasajeros=cantPasajeros;
+    this.precio = precio;
+    this.fecha = fecha;
   }
+
+  public Vuelo() {
+  }
+
   public String getNumeroDeVuelo()
   {
     return numeroDeVuelo;
@@ -21,21 +29,21 @@ public class Vuelo {
   {
     this.numeroDeVuelo=numeroDeVuelo;
   }
-   public String getCuidadDeOrigen()
+   public String getCuidadOrigen()
   {
-    return cuidadDeOrigen;
+    return ciudadOrigen;
   }
-  public void setCuidadDeOrigen(String cuidadDeOrigen)
+  public void setCiudadOrigen(String ciudadOrigen)
   {
-    this.cuidadDeOrigen=cuidadDeOrigen;
+    this.ciudadOrigen = ciudadOrigen;
   }
-   public String getCuidadDestino()
+   public String getCiudadDestino()
   {
-    return cuidadDestino;
+    return ciudadDestino;
   }
-  public void setCuidadDestino(String cuidadDestino)
+  public void setCiudadDestino(String ciudadDestino)
   {
-    this.cuidadDestino=cuidadDestino;
+    this.ciudadDestino=ciudadDestino;
   }
    public int getCantPasajeros()
   {
@@ -45,9 +53,15 @@ public class Vuelo {
   {
     this.cantPasajeros=cantPasajeros;
   }
+  public double getPrecio() { return precio; }
+  public void setPrecio(double precio) { this.precio = precio; }
+  public String getFecha() { return fecha; }
+  public void setFecha(String fecha) { this.fecha = fecha; }
   public String toString()
   {
-    return "numero de vuelo: "+numeroDeVuelo+"cuidad de origen: "+cuidaddeOrigen+"cuidad destino: "+cuidadDestino+"cantidad de pasajeros: "+cantPasajeros;
+    return "Vuelo "+ numeroDeVuelo +":"+ ciudadOrigen +
+            " -> "+ ciudadDestino + " (" + fecha + ") | $" + precio +
+            "| Pasajeros disponibles: " + cantPasajeros;
   }
   
 }
