@@ -1,5 +1,7 @@
 package Agencia.Modelo.Usuarios;
 
+import java.util.Objects;
+
 public abstract class Persona {
     private String nombre;
     private String apellido;
@@ -21,15 +23,13 @@ public abstract class Persona {
 
     public String getNombre() {return nombre;}
 
-    public void setNombre(String nombre) {this.nombre = nombre;}
+    protected void setNombre(String nombre) {this.nombre = nombre;}
 
     public String getApellido() {return apellido;}
 
-    public void setApellido(String apellido) {this.apellido = apellido;}
+    protected void setApellido(String apellido) {this.apellido = apellido;}
 
     public String getDni() {return dni;}
-
-    public void setDni(String dni) {this.dni = dni;}
 
     public String getMail() {return mail;}
 
@@ -40,10 +40,16 @@ public abstract class Persona {
     public void setUsuarioActivo(boolean usuarioActivo) {this.usuarioActivo = usuarioActivo;}
 
     @Override
-    public String toString() {
-        return "mail='" + mail + '\'' +
-                ", dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'';
+    public boolean equals(Object o) {
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(dni, persona.dni);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dni);
+    }
+
+    public String getNombreCompleto(){
+        return nombre + " " + apellido;}
 }

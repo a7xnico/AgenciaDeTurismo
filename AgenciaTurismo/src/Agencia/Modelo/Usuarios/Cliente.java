@@ -1,28 +1,48 @@
 package Agencia.Modelo.Usuarios;
 
 public abstract class Cliente extends Persona {
-    private double puntosAcumulados;
+    private double descuentoAcumulado;
 
     public Cliente(String nombre, String apellido, String dni, String mail) {
         super(nombre, apellido, dni, mail);
-        puntosAcumulados = 0;
+        this.descuentoAcumulado = 0.0;
     }
 
     public Cliente() {
         super();
-        puntosAcumulados = 0;
+        this.descuentoAcumulado = 0.0;
     }
 
-    public double getPuntosAcumulados() {
-        return puntosAcumulados;
+    public double getDescuentoAcumulado() {
+        return descuentoAcumulado;
     }
 
-    public void setPuntosAcumulados(double puntosAcumulados) {
-        this.puntosAcumulados = puntosAcumulados;
+    public void setDescuentoAcumulado(double descuentoAcumulado) {
+        this.descuentoAcumulado = descuentoAcumulado;
     }
+
+    public double calcularDescuento(double monto){
+        return monto * (getDescuentoAcumulado() / 100);
+    }
+
+    public abstract String getTipoCliente();
+
+    public void acumularDescuento(double porcentaje){
+        this.descuentoAcumulado += porcentaje;
+        if(this.descuentoAcumulado > 30){
+            this.descuentoAcumulado = 30;
+        }
+    }
+
+    public void modificarNombre(String nombre) { setNombre(nombre); }
+    public void modificarApellido(String apellido) { setApellido(apellido); }
+    public void modificarMail(String mail) { setMail(mail); }
 
     @Override
     public String toString() {
-        return super.toString() + "Puntos acumulados= " + puntosAcumulados;
+        String estado = isUsuarioActivo() ? "Activo" : "Inactivo";
+        return " [" + getTipoCliente() + "] " + getNombreCompleto() +
+                "\nDNI: " + getDni() + "\n| Email: " + getMail() +
+                "\n Descuento: " + getDescuentoAcumulado() + "%  |Estado: " + estado;
     }
 }
