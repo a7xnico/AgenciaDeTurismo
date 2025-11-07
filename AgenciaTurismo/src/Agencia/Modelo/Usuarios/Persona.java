@@ -31,6 +31,8 @@ public class Persona {
 
     public String getDni() {return dni;}
 
+    protected void setDni(String dni){this.dni = dni;}
+
     public String getMail() {return mail;}
 
     public void setMail(String mail) {this.mail = mail;}
