@@ -14,44 +14,71 @@ public class GestorHoteles implements iGestionable<Hotel> {
     }
 
     @Override
-    public void alta(Hotel objeto) {
-     if(objeto==null)
+    public void alta(Hotel hotel) {
+     if(hotel==null)
      {
          throw new IllegalArgumentException("el hotel no puede ser nulo");
-     }else
-     {
-         hoteles.add(objeto);
-              System.out.println("hotel agregado exitosamente");
      }
+     hoteles.add(hotel);
+     System.out.println("hotel agregado exitosamente");
+
 
     }
 
     @Override
     public void baja(String id) {
-        Hotel aux=hoteles.get(Integer.parseInt(id));
-        if(hoteles==null)
+        Hotel hotel = consultar(id);
+        if(hotel==null)
         {
-            throw new IllegalArgumentException("ese id no esta asociado a ningun hotel");
-        }else
-        {
-            hoteles.remove(id);
-                 System.out.println("hotel eliminado exitosamente exitosamente");
+            throw new IllegalArgumentException("El hotel no existe.");
         }
 
-    }
-
-    @Override
-    public void modificar(Hotel objeto) {
+        hotel.setActivo(false);
+        System.out.println("Hotel dado de baja");
 
     }
 
     @Override
-    public List<Hotel> listado() {
-        return List.of();
+    public void modificar(Hotel hotel) {
+        if (hotel == null){
+            throw new IllegalArgumentException("El hotel no puede ser nulo");
+        }
+
+        Hotel hotelExistente = consultar(hotel.getIdHotel());
+        if (hotelExistente == null){
+            throw new IllegalArgumentException("El hotel no se encuentra en el sistema");
+        }
+
+        hotelExistente.setNombre(hotel.getNombre());
+        hotelExistente.setCiudad(hotel.getCiudad());
+        hotelExistente.setEstrellas(hotel.getEstrellas());
+        hotelExistente.setPrecioPorNoche(hotel.getPrecioPorNoche());
+        hotelExistente.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles());
+
+        System.out.println("hotel modificado exitosamente");
+
+    }
+
+    @Override
+    public ArrayList<Hotel> listado() {
+        ArrayList<Hotel> hotelesActivos = new ArrayList<>();
+        for (Hotel h : hoteles){
+            if (h.isActivo())
+                hotelesActivos.add(h);
+            }
+        return hotelesActivos;
+    }
+
+    public List<Hotel> listadoJson(){
+        return hoteles;
     }
 
     @Override
     public Hotel consultar(String id) {
+
+        for (Hotel h : hoteles)
+            if (h.getIdHotel().equals(id))
+                return h;
         return null;
     }
 }

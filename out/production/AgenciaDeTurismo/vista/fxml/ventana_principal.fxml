@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="vista.controllers.VentanaPrincipalController"
+            prefWidth="600" prefHeight="400">
+
+    <!-- Encabezado -->
+    <top>
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="🏝 Agencia de Turismo"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Botones -->
+    <left>
+        <VBox spacing="10" alignment="CENTER_LEFT" prefWidth="150" style="-fx-padding: 15;">
+            <Button text="Clientes" onAction="#abrirClientes"/>
+            <Button text="Vuelos" onAction="#abrirVuelos"/>
+            <Button text="Hoteles" onAction="#abrirHoteles"/>
+        </VBox>
+    </left>
+
+    <!-- Panel central donde cambia el contenido -->
+    <center>
+        <StackPane fx:id="panelCentral" alignment="CENTER">
+            <Label text="Selecciona una opción del menú" style="-fx-font-size: 16px;"/>
+        </StackPane>
+    </center>
+
+</BorderPane>
