@@ -1,4 +1,5 @@
 package Agencia.Gestores;
+import Agencia.GestionArchivos.GestorJSONVuelos;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Vuelo;
 
@@ -8,19 +9,35 @@ import java.util.List;
 
 public class GestorVuelos implements iGestionable<Vuelo> {
     private HashMap<String, Vuelo> vuelos;
+    private GestorJSONVuelos gestorJson;
 
     public GestorVuelos(){
         vuelos = new HashMap<>();
+        gestorJson = new GestorJSONVuelos();
+        cargarJson();
+    }
+
+    private void cargarJson(){
+        List<Vuelo> listaVuelos = gestorJson.deserializarLista();
+        if (listaVuelos != null && !listaVuelos.isEmpty())
+            for (Vuelo v : listaVuelos)
+                vuelos.put(v.getNumeroDeVuelo(), v);
+    }
+
+    private void guardarJson(){
+        List<Vuelo> lista = listadoJson();
+        gestorJson.serializarLista(lista);
     }
 
 
     @Override
-    public void alta(Vuelo objeto) {
-        if (objeto == null){
+    public void alta(Vuelo vuelo) {
+        if (vuelo == null){
             throw new IllegalArgumentException("No puede ingresar un vuelo nulo");
         }
 
-        vuelos.put(objeto.getNumeroDeVuelo(), objeto);
+        vuelos.put(vuelo.getNumeroDeVuelo(), vuelo);
+        guardarJson();
 
         System.out.println("Vuelo agregado exitosamente");
     }
@@ -34,28 +51,30 @@ public class GestorVuelos implements iGestionable<Vuelo> {
         }
 
         vuelo.setActivo(false);
+        guardarJson();
 
         System.out.println("vuelo dado de baja exitosamente");
     }
 
     @Override
-    public void modificar(Vuelo objeto) {
-        if(objeto == null) {
+    public void modificar(Vuelo vuelo) {
+        if(vuelo == null) {
             throw new IllegalArgumentException("el vuelo no puede ser nulo");
         }
 
-        Vuelo vueloExistente = consultar(objeto.getNumeroDeVuelo());
+        Vuelo vueloExistente = consultar(vuelo.getNumeroDeVuelo());
 
         if(vueloExistente == null) {
             throw new IllegalArgumentException("el vuelo no existe en el sistema");
         }
 
-        vueloExistente.setCiudadOrigen(objeto.getCiudadOrigen());
-        vueloExistente.setCiudadDestino(objeto.getCiudadDestino());
-        vueloExistente.setCantPasajeros(objeto.getCantPasajeros());
-        vueloExistente.setPrecio(objeto.getPrecio());
-        vueloExistente.setFecha(objeto.getFecha());
+        vueloExistente.setCiudadOrigen(vuelo.getCiudadOrigen());
+        vueloExistente.setCiudadDestino(vuelo.getCiudadDestino());
+        vueloExistente.setCantPasajeros(vuelo.getCantPasajeros());
+        vueloExistente.setPrecio(vuelo.getPrecio());
+        vueloExistente.setFecha(vuelo.getFecha());
 
+        guardarJson();
         System.out.println("vuelo modificado exitosamente");
     }
 

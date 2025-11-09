@@ -3,6 +3,8 @@ package Agencia.Modelo.Servicios;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class Vuelo {
   private String numeroDeVuelo;
   private String ciudadOrigen;
@@ -98,6 +100,16 @@ public class Vuelo {
     }
     return jsonVuelo;
   }
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof Vuelo vuelo)) return false;
+      return Objects.equals(numeroDeVuelo, vuelo.numeroDeVuelo);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(numeroDeVuelo);
+  }
 }
 

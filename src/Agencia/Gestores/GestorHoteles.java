@@ -1,5 +1,6 @@
 package Agencia.Gestores;
 
+import Agencia.GestionArchivos.GestorJSONHoteles;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Hotel;
 
@@ -8,9 +9,20 @@ import java.util.List;
 
 public class GestorHoteles implements iGestionable<Hotel> {
     private List<Hotel> hoteles;
+    private GestorJSONHoteles gestorJson;
 
     public GestorHoteles() {
         hoteles = new ArrayList<>();
+        gestorJson = new GestorJSONHoteles();
+        cargarJson();
+    }
+
+    private void cargarJson(){
+        hoteles = gestorJson.deserializarLista();
+    }
+
+    private void guardarJson(){
+        gestorJson.serializarLista( hoteles);
     }
 
     @Override
@@ -20,6 +32,7 @@ public class GestorHoteles implements iGestionable<Hotel> {
          throw new IllegalArgumentException("el hotel no puede ser nulo");
      }
      hoteles.add(hotel);
+     guardarJson();
      System.out.println("hotel agregado exitosamente");
 
 
@@ -34,8 +47,8 @@ public class GestorHoteles implements iGestionable<Hotel> {
         }
 
         hotel.setActivo(false);
+        guardarJson();
         System.out.println("Hotel dado de baja");
-
     }
 
     @Override
@@ -55,6 +68,7 @@ public class GestorHoteles implements iGestionable<Hotel> {
         hotelExistente.setPrecioPorNoche(hotel.getPrecioPorNoche());
         hotelExistente.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles());
 
+        guardarJson();
         System.out.println("hotel modificado exitosamente");
 
     }

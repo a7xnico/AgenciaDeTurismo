@@ -13,12 +13,8 @@ public class Admin {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public boolean validarPassword(String password) {
-        return this.password.equals(password);
+    public boolean autenticar(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
     }
 
 }
