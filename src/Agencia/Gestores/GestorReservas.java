@@ -1,8 +1,10 @@
 package Agencia.Gestores;
 
+import Agencia.GestionArchivos.GestorJSONReservas;
 import Agencia.Modelo.Enums.EstadoReserva;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Reserva;
+import Agencia.Modelo.Servicios.Vuelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,9 +12,24 @@ import java.util.List;
 
 public class GestorReservas implements iGestionable<Reserva> {
     private HashMap<String, Reserva> reservas;
+    private GestorJSONReservas gestorJson;
 
     public GestorReservas(){
         reservas = new HashMap<>();
+        gestorJson = new GestorJSONReservas();
+        cargarJson();
+    }
+
+    private void cargarJson(){
+        List<Reserva> listReservas = gestorJson.deserializarLista();
+        if (listReservas != null && !listReservas.isEmpty())
+            for (Reserva r : listReservas)
+                reservas.put(r.getIdReserva(), r);
+    }
+
+    private void guardarJson(){
+        List<Reserva> lista = listadoJson();
+        gestorJson.serializarLista(lista);
     }
 
     @Override
@@ -69,6 +86,10 @@ public class GestorReservas implements iGestionable<Reserva> {
             }
         }
         return reservasActivas;
+    }
+
+    public List<Reserva> listadoJson(){
+        return new ArrayList<>(reservas.values());
     }
 
     @Override

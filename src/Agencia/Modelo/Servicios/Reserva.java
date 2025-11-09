@@ -5,6 +5,8 @@ import Agencia.Modelo.Usuarios.Cliente;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class Reserva{
     private static int contadorReservas = 0;
     private int idReserva;
@@ -97,4 +99,14 @@ public class Reserva{
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Reserva reserva)) return false;
+        return idReserva == reserva.idReserva;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(idReserva);
+    }
 }

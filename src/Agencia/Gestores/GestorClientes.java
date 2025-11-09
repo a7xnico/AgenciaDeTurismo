@@ -1,5 +1,6 @@
 package Agencia.Gestores;
 
+import Agencia.GestionArchivos.GestorJSONClientes;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Usuarios.Cliente;
 
@@ -10,9 +11,23 @@ import java.util.Set;
 
 public class GestorClientes implements iGestionable<Cliente> {
     private Set<Cliente> clientes;
+    private GestorJSONClientes gestorJson;
 
     public GestorClientes() {
         clientes = new HashSet<>();
+        gestorJson = new GestorJSONClientes();
+        cargarJson();
+    }
+
+    private void cargarJson(){
+        List<Cliente> listaClientes = gestorJson.deserializarLista();
+        if (listaClientes != null && !listaClientes.isEmpty()){
+            clientes.addAll(listaClientes);
+        }
+    }
+
+    private void guardarJson(){
+        gestorJson.serializarLista(listadoJson());
     }
 
     @Override
@@ -24,6 +39,7 @@ public class GestorClientes implements iGestionable<Cliente> {
         }else
         {
             clientes.add(cliente);
+            guardarJson();
             System.out.println("cliente agregado exitosamente");
         }
 
@@ -36,6 +52,7 @@ public class GestorClientes implements iGestionable<Cliente> {
             throw new IllegalArgumentException("El cliente no existe");
         }
         cliente.setUsuarioActivo(false);
+        guardarJson();
     }
 
     @Override
@@ -55,8 +72,9 @@ public class GestorClientes implements iGestionable<Cliente> {
         clienteExistente.modificarApellido(cliente.getApellido());
         clienteExistente.modificarMail(cliente.getMail());
         clienteExistente.setUsuarioActivo(cliente.isUsuarioActivo());
-
         clientes.add(clienteExistente);
+
+        guardarJson();
         System.out.println("Cliente modificado exitosamente");
     }
 
