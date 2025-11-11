@@ -1,5 +1,6 @@
 package Agencia.Modelo.Servicios;
 
+import Agencia.Gestores.Validador;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ public class Vuelo {
   
   public Vuelo(String numeroDeVuelo,String ciudadOrigen,String ciudadDestino, int cantPasajeros, double precio, String fecha)
   {
+    validarDatos(numeroDeVuelo, ciudadOrigen, ciudadDestino, cantPasajeros, precio, fecha);
     this.numeroDeVuelo =numeroDeVuelo;
     this.ciudadOrigen=ciudadOrigen;
     this.ciudadDestino=ciudadDestino;
@@ -42,40 +44,43 @@ public class Vuelo {
   {
     return numeroDeVuelo;
   }
-  public void setNumeroDeVuelo(String numeroDeVuelo)
-  {
-    this.numeroDeVuelo=numeroDeVuelo;
-  }
    public String getCiudadOrigen()
   {
     return ciudadOrigen;
   }
-  public void setCiudadOrigen(String ciudadOrigen)
-  {
-    this.ciudadOrigen = ciudadOrigen;
-  }
+  public void setCiudadOrigen(String ciudadOrigen) {
+    Validador.noVacio(numeroDeVuelo, "número de vuelo");
+    this.ciudadOrigen = ciudadOrigen;}
    public String getCiudadDestino()
   {
     return ciudadDestino;
   }
-  public void setCiudadDestino(String ciudadDestino)
-  {
-    this.ciudadDestino=ciudadDestino;
-  }
+  public void setCiudadDestino(String ciudadDestino) {
+    Validador.soloLetras(ciudadDestino, "ciudad de destino");
+    this.ciudadDestino=ciudadDestino;}
    public int getCantPasajeros()
   {
     return cantPasajeros;
   }
-  public void setCantPasajeros(int cantPasajeros)
-  {
-    this.cantPasajeros=cantPasajeros;
-  }
+  public void setCantPasajeros(int cantPasajeros) {
+    if (cantPasajeros <= 0) throw new IllegalArgumentException("La cantidad de pasajeros debera ser mayor a 0");
+    this.cantPasajeros=cantPasajeros;}
   public double getPrecio() { return precio; }
-  public void setPrecio(double precio) { this.precio = precio; }
+  public void setPrecio(double precio) {
+    if (precio <= 0) throw new IllegalArgumentException("El precio debe ser mayor a 0");
+    this.precio = precio; }
   public String getFecha() { return fecha; }
-  public void setFecha(String fecha) { this.fecha = fecha; }
   public boolean isActivo() {return activo;}
   public void setActivo(boolean activo) {this.activo = activo;}
+
+  public void validarDatos(String numeroDeVuelo, String ciudadOrigen, String ciudadDestino, int cantPasajeros, double precio, String fecha){
+    Validador.noVacio(numeroDeVuelo, "número de vuelo");
+    Validador.soloLetras(ciudadOrigen, "ciudad de origen");
+    Validador.soloLetras(ciudadDestino, "ciudad de destino");
+    Validador.fecha(fecha, "fecha");
+    if (cantPasajeros <= 0) throw new IllegalArgumentException("La cantidad de pasajeros debera ser mayor a 0");
+    if (precio <= 0) throw new IllegalArgumentException("El precio debe ser mayor a 0");
+  }
 
   public String toString()
   {
@@ -104,7 +109,7 @@ public class Vuelo {
   @Override
   public boolean equals(Object o) {
     if (!(o instanceof Vuelo vuelo)) return false;
-      return Objects.equals(numeroDeVuelo, vuelo.numeroDeVuelo);
+    return Objects.equals(numeroDeVuelo, vuelo.numeroDeVuelo);
   }
 
   @Override

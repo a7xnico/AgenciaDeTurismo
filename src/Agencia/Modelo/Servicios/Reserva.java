@@ -1,10 +1,13 @@
 package Agencia.Modelo.Servicios;
 
+import Agencia.Gestores.Validador;
 import Agencia.Modelo.Enums.EstadoReserva;
 import Agencia.Modelo.Usuarios.Cliente;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Reserva{
@@ -25,7 +28,7 @@ public class Reserva{
         this.hotel = hotel;
         this.vuelo = vuelo;
         this.noches = noches;
-        this.fechaReserva = fechaReserva;
+        this.fechaReserva = generarFechaActual();
         calcularTotal();
         this.estado = EstadoReserva.PENDIENTE;
     }
@@ -52,6 +55,18 @@ public class Reserva{
         double subtotal = costoHotel + costoVuelo;
         double descuento = cliente.calcularDescuento(subtotal);
         this.total = subtotal - descuento;
+    }
+
+    private void validarDatos(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches){
+        if (cliente == null) throw new IllegalArgumentException("El cliente no puede ser nulo");
+        if (hotel == null) throw new IllegalArgumentException("El hotel no puede ser nulo");
+        if (vuelo == null) throw new IllegalArgumentException("El vuelo no puede ser nulo");
+        if (noches <= 0) throw new IllegalArgumentException("La cantidad de noches debe ser mayor a 0");
+    }
+
+    private String generarFechaActual() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.now().format(formato);
     }
 
     public String getIdReserva() { return String.valueOf(idReserva); }
