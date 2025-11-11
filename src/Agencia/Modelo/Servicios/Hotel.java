@@ -1,5 +1,6 @@
 package Agencia.Modelo.Servicios;
 
+import Agencia.Gestores.Validador;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ public class Hotel {
     private boolean activo;
 
     public Hotel(String nombre, String ciudad, int estrellas, double precioPorNoche, int habitaciones) {
+        validarDatos(nombre, ciudad, estrellas, precioPorNoche, habitaciones);
         cantHoteles++;
         this.idHotel = cantHoteles;
         this.nombre = nombre;
@@ -23,7 +25,7 @@ public class Hotel {
         this.estrellas = estrellas;
         this.precioPorNoche = precioPorNoche;
         this.habitacionesDisponibles = habitaciones;
-        this.activo = true;
+        this.activo = habitaciones > 0;
     }
 
     public Hotel(JSONObject jsonHotel){
@@ -46,24 +48,42 @@ public class Hotel {
         this.idHotel = cantHoteles;
     }
 
+    private void validarDatos(String nombre, String ciudad, int estrellas, double precio, int habitaciones) {
+        Validador.noVacio(nombre, "nombre del hotel");
+        Validador.noVacio(ciudad, "ciudad");
+        Validador.soloLetras(ciudad, "ciudad");
+        if (estrellas < 1 || estrellas > 5) throw new IllegalArgumentException("Las estrellas deben estar entre 1 y 5");
+        if (precio <= 0) throw new IllegalArgumentException("El precio por noche debe ser mayor a 0");
+        if (habitaciones < 0) throw new IllegalArgumentException("Las habitaciones disponibles no pueden ser negativas");
+    }
+
     public String getNombre() {return nombre;}
-    public void setNombre(String nombre) {this.nombre = nombre;}
+    public void setNombre(String nombre) {
+        Validador.noVacio(nombre, "nombre del hotel");
+        this.nombre = nombre;}
     public String getCiudad() {return ciudad;}
-    public void setCiudad(String ciudad) {this.ciudad = ciudad;}
+    public void setCiudad(String ciudad) {
+        Validador.soloLetras(ciudad, "ciudad");
+        this.ciudad = ciudad;}
     public int getEstrellas() {return estrellas;}
     public double getPrecioPorNoche() {return precioPorNoche;}
-    public void setPrecioPorNoche(double precioPorNoche) {this.precioPorNoche = precioPorNoche;}
+    public void setPrecioPorNoche(double precioPorNoche) {
+        if (precioPorNoche <= 0) throw new IllegalArgumentException("El precio por noche debe ser mayor a 0");
+        this.precioPorNoche = precioPorNoche;}
     public int getHabitacionesDisponibles() {return habitacionesDisponibles;}
-    public void setHabitacionesDisponibles(int habitaciones) {this.habitacionesDisponibles = habitaciones;}
+    public void setHabitacionesDisponibles(int habitaciones) {
+        if (habitaciones < 0) throw new IllegalArgumentException("Las habitaciones no pueden ser negativas");
+        this.habitacionesDisponibles = habitaciones;
+        this.activo = habitaciones > 0;}
     public static int getCantHoteles() {return cantHoteles;}
     public String getIdHotel() {   return String.valueOf(idHotel);}
     public boolean isActivo() {return activo;}
     public void setActivo(boolean activo) {this.activo = activo;}
 
     public void setEstrellas(int estrellas) {
-        if (estrellas >= 1 && estrellas <= 5) {
-            this.estrellas = estrellas;
-        }
+        if (estrellas < 1 || estrellas > 5)
+            throw new IllegalArgumentException("Las estrellas deben estar entre 1 y 5");
+        this.estrellas = estrellas;
     }
 
     public String estrellasVisible(){
