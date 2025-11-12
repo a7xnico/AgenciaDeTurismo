@@ -34,45 +34,39 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     @Override
     public void alta(Reserva reserva) {
-        if (reserva == null){
-            throw new IllegalArgumentException("La reserva no puede ser nula");
-        }
+        if (reserva == null) throw new IllegalArgumentException("La reserva no puede ser nula");
 
         reservas.put(reserva.getIdReserva(), reserva);
+        guardarJson();
         System.out.println("reserva agregada exitosamente");
     }
 
     @Override
     public void baja(String id) {
         Reserva reserva = consultar(id);
-        if (reserva == null){
-            throw new IllegalArgumentException("la reserva no existe");
-        }
+        if (reserva == null) throw new IllegalArgumentException("la reserva no existe");
 
         reserva.setEstado(EstadoReserva.CANCELADA);
+        guardarJson();
         System.out.println("reserva cancelada exitosamente");
     }
 
     @Override
     public void modificar(Reserva reserva) {
-        if (reserva == null){
-            throw new IllegalArgumentException("la reserva no puede ser nula");
-        }
+        if (reserva == null) throw new IllegalArgumentException("la reserva no puede ser nula");
 
         Reserva reservaExistente = consultar(reserva.getIdReserva());
 
-        if(reservaExistente == null) {
-            throw new IllegalArgumentException("la reserva no existe en el sistema");
-        }
+        if(reservaExistente == null) throw new IllegalArgumentException("la reserva no existe en el sistema");
 
         reservaExistente.setCliente(reserva.getCliente());
         reservaExistente.setHotel(reserva.getHotel());
         reservaExistente.setVuelo(reserva.getVuelo());
         reservaExistente.setNoches(reserva.getNoches());
         reservaExistente.calcularTotal();
-        reservaExistente.setFechaReserva(reserva.getFechaReserva());
         reservaExistente.setEstado(reserva.getEstado());
 
+        guardarJson();
         System.out.println("reserva modificada exitosamente");
 
     }
@@ -81,6 +75,7 @@ public class GestorReservas implements iGestionable<Reserva> {
     public List<Reserva> listado() {
         List<Reserva> reservasActivas = new ArrayList<>();
         for(Reserva r : reservas.values()) {
+            actualizarEstado(r);
             if(r.getEstado() != EstadoReserva.CANCELADA) {
                 reservasActivas.add(r);
             }
@@ -94,6 +89,15 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     @Override
     public Reserva consultar(String id) {
-        return reservas.get(id);
+        Reserva reserva = reservas.get(id);
+        if (reserva != null) {
+            actualizarEstado(reserva);
+            guardarJson();
+        }
+        return reserva;
+    }
+
+    private void actualizarEstado(Reserva reserva){
+        reserva.verificarEstado();
     }
 }

@@ -9,7 +9,7 @@ public class Autenticador {
         this.admin = new Admin("admin", "admin123");
     }
 
-    public boolean autenticarAdmin(String username, String password){
+    public boolean validarAdmin(String username, String password){
         return admin.autenticar(username, password);
     }
 
@@ -20,6 +20,8 @@ public class Autenticador {
     public Admin getAdmin(){
         return admin;
     }
+
+
 
 
 
