@@ -1,6 +1,5 @@
 package Agencia.Modelo.Servicios;
 
-import Agencia.Gestores.Validador;
 import Agencia.Modelo.Enums.EstadoReserva;
 import Agencia.Modelo.Usuarios.Cliente;
 import org.json.JSONException;
@@ -76,16 +75,61 @@ public class Reserva{
     public Vuelo getVuelo() { return vuelo; }
     public int getNoches() { return noches; }
     public void setNoches(int noches) {
+        if (noches <= 0) throw new IllegalArgumentException("La cantidad de noches debe ser mayor a 0");
         this.noches = noches;
-        calcularTotal();
-    }
+        calcularTotal();}
     public String getFechaReserva() { return fechaReserva; }
-    public void setFechaReserva(String fecha) { this.fechaReserva = fecha; }
-    public void setCliente(Cliente cliente) {this.cliente = cliente;}
-    public void setVuelo(Vuelo vuelo) {this.vuelo = vuelo;}
-    public void setHotel(Hotel hotel) {this.hotel = hotel;}
+    public void setCliente(Cliente cliente) {
+        if (cliente == null) throw new IllegalArgumentException("El cliente no puede ser nulo");
+        this.cliente = cliente;}
+    public void setVuelo(Vuelo vuelo) {
+        if (vuelo == null) throw new IllegalArgumentException("El vuelo no puede ser nulo");
+        this.vuelo = vuelo;}
+    public void setHotel(Hotel hotel) {
+        if (hotel == null) throw new IllegalArgumentException("El hotel no puede ser nulo");
+        this.hotel = hotel;}
     public EstadoReserva getEstado() {return estado;}
     public void setEstado(EstadoReserva estado) {this.estado = estado;}
+
+    public boolean verificarEstado(){
+        try{
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaVuelo = LocalDate.parse(vuelo.getFecha(), formato);
+            LocalDate fechaFinInstancia = fechaVuelo.plusDays(noches);
+            LocalDate hoy = LocalDate.now();
+
+            if (this.estado == EstadoReserva.PENDIENTE && !hoy.isBefore(fechaVuelo)){
+                this.estado = EstadoReserva.CONFIRMADA;
+                System.out.println("Reserva #" + idReserva + " confirmada automáticamente (día del vuelo)");
+                return true;
+            }
+            if (this.estado == EstadoReserva.CONFIRMADA && hoy.isAfter(fechaFinInstancia)){
+                this.estado = EstadoReserva.COMPLETADA;
+                System.out.println("Reserva #" + idReserva + " completada automáticamente (fin de estancia)");
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al verificar fechas: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public String getFinEstancia() {
+        try {
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaVuelo = LocalDate.parse(vuelo.getFecha(), formato);
+            LocalDate fechaFin = fechaVuelo.plusDays(noches);
+            return fechaFin.format(formato);
+        } catch (Exception e) {
+            System.out.println("Error al calcular fecha de fin: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
 
     public String toString(){
         return "Reserva #" + idReserva + " |Cliente: " + cliente.getNombreCompleto() +
