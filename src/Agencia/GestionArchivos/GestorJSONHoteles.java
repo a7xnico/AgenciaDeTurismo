@@ -8,6 +8,13 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gestor para serializar y deserializar hoteles desde/hacia archivos JSON.
+ * Convierte listas de hoteles a formato JSON para guardarlos en archivo,
+ * y viceversa al leer el archivo.
+ * @author Nicolas
+ */
+
 public class GestorJSONHoteles {
     private String nomJson = "Hoteles.json";
 

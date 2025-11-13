@@ -7,6 +7,10 @@ import Agencia.Modelo.Servicios.Hotel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gestor de hoteles que maneja el CRUD de hoteles en el sistema.
+ * Almacena los hoteles en una lista y sincroniza con el archivo JSON.*/
+
 public class GestorHoteles implements iGestionable<Hotel> {
     private List<Hotel> hoteles;
     private GestorJSONHoteles gestorJson;
@@ -25,6 +29,11 @@ public class GestorHoteles implements iGestionable<Hotel> {
         gestorJson.serializarLista( hoteles);
     }
 
+    /**
+     * Agrega un nuevo hotel al sistema.
+     * @param hotel el hotel a agregar
+     * @throws IllegalArgumentException si el hotel es nulo*/
+
     @Override
     public void alta(Hotel hotel) {
      if(hotel==null)
@@ -38,6 +47,12 @@ public class GestorHoteles implements iGestionable<Hotel> {
 
     }
 
+    /**
+     * Desactiva un hotel del sistema (baja lógica).
+     * El hotel no se elimina, solo se marca como inactivo.
+     * @param id el ID del hotel a dar de baja
+     * @throws IllegalArgumentException si el hotel no existe*/
+
     @Override
     public void baja(String id) {
         Hotel hotel = consultar(id);
@@ -50,6 +65,11 @@ public class GestorHoteles implements iGestionable<Hotel> {
         guardarJson();
         System.out.println("Hotel dado de baja");
     }
+
+    /**
+     * Modifica los datos de un hotel existente.
+     * @param hotel el hotel con los datos actualizados
+     * @throws IllegalArgumentException si el hotel es nulo o no existe en el sistema*/
 
     @Override
     public void modificar(Hotel hotel) {
@@ -73,6 +93,9 @@ public class GestorHoteles implements iGestionable<Hotel> {
 
     }
 
+    /**
+     * Retorna un listado de todos los hoteles activos.
+     * @return lista con los hoteles activos*/
     @Override
     public ArrayList<Hotel> listado() {
         ArrayList<Hotel> hotelesActivos = new ArrayList<>();
@@ -86,6 +109,11 @@ public class GestorHoteles implements iGestionable<Hotel> {
     public List<Hotel> listadoJson(){
         return hoteles;
     }
+
+    /**
+     * Busca un hotel por su ID.
+     * @param id el ID del hotel a buscar
+     * @return el hotel encontrado, o null si no existe*/
 
     @Override
     public Hotel consultar(String id) {

@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Gestor de reservas
+ * Maneja el CRUD de reservas y verifica automáticamente el estado de cada reserva
+ * comparando fechas con la fecha actual.
+ * Los estados posibles son: PENDIENTE, CONFIRMADA, FINALIZADA, CANCELADA.
+ * El estado se actualiza automáticamente al consultar una reserva. */
+
 public class GestorReservas implements iGestionable<Reserva> {
     private HashMap<String, Reserva> reservas;
     private GestorJSONReservas gestorJson;
@@ -32,6 +39,11 @@ public class GestorReservas implements iGestionable<Reserva> {
         gestorJson.serializarLista(lista);
     }
 
+    /**
+     * Agrega una nueva reserva al sistema.
+     * @param reserva la reserva a agregar
+     * @throws IllegalArgumentException si la reserva es nula */
+
     @Override
     public void alta(Reserva reserva) {
         if (reserva == null) throw new IllegalArgumentException("La reserva no puede ser nula");
@@ -40,6 +52,12 @@ public class GestorReservas implements iGestionable<Reserva> {
         guardarJson();
         System.out.println("reserva agregada exitosamente");
     }
+
+    /**
+     * Cancela una reserva existente.
+     * La reserva cambia su estado a CANCELADA.
+     * @param id el ID de la reserva a cancelar
+     * @throws IllegalArgumentException si la reserva no existe */
 
     @Override
     public void baja(String id) {
@@ -50,6 +68,12 @@ public class GestorReservas implements iGestionable<Reserva> {
         guardarJson();
         System.out.println("reserva cancelada exitosamente");
     }
+
+    /**
+     * Modifica los datos de una reserva existente.
+     * Recalcula el total y actualiza el estado automáticamente.
+     * @param reserva la reserva con los datos actualizados
+     * @throws IllegalArgumentException si la reserva es nula o no existe en el sistema */
 
     @Override
     public void modificar(Reserva reserva) {
@@ -71,7 +95,10 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     }
 
-
+    /**
+     * Retorna un listado de reservas activas (no canceladas).
+     * El estado de cada reserva se actualiza automáticamente antes de retornar.
+     * @return lista con las reservas activas */
     public List<Reserva> listado() {
         List<Reserva> reservasActivas = new ArrayList<>();
         for(Reserva r : reservas.values()) {
@@ -87,6 +114,12 @@ public class GestorReservas implements iGestionable<Reserva> {
         return new ArrayList<>(reservas.values());
     }
 
+    /**
+     * Busca una reserva por su ID.
+     * Actualiza automáticamente su estado antes de retornarla.
+     * @param id el ID de la reserva a buscar
+     * @return la reserva encontrada, o null si no existe */
+
     @Override
     public Reserva consultar(String id) {
         Reserva reserva = reservas.get(id);
@@ -97,6 +130,11 @@ public class GestorReservas implements iGestionable<Reserva> {
         return reserva;
     }
 
+
+    /**
+     * Actualiza el estado de una reserva verificando las fechas.
+     * Se llama automáticamente al consultar o listar reservas.
+     * @param reserva la reserva cuyo estado se debe actualizar */
     private void actualizarEstado(Reserva reserva){
         reserva.verificarEstado();
     }

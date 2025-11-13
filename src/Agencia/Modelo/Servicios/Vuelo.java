@@ -6,6 +6,12 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+/**
+ * Representa un vuelo en el sistema de agencia de turismo.
+ * Contiene información sobre el viaje como ciudades de origen/destino,
+ * cantidad de pasajeros, precio y fecha.
+ * @author Nicolas*/
+
 public class Vuelo {
   private String numeroDeVuelo;
   private String ciudadOrigen;
@@ -14,7 +20,17 @@ public class Vuelo {
   private double precio;
   private String fecha;
   private boolean activo;
-  
+
+  /**
+   * Crea un nuevo vuelo con los datos especificados.
+   * Valida que todos los datos sean correctos antes de crear el vuelo.
+   * @param numeroDeVuelo identificador único del vuelo (no puede estar vacío)
+   * @param ciudadOrigen ciudad de partida (solo letras)
+   * @param ciudadDestino ciudad de llegada (solo letras)
+   * @param cantPasajeros cantidad de pasajeros disponibles (debe ser mayor a 0)
+   * @param precio tarifa del vuelo (debe ser mayor a 0)
+   * @param fecha fecha del vuelo en formato dd/MM/yyyy
+   * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
   public Vuelo(String numeroDeVuelo,String ciudadOrigen,String ciudadDestino, int cantPasajeros, double precio, String fecha)
   {
     validarDatos(numeroDeVuelo, ciudadOrigen, ciudadDestino, cantPasajeros, precio, fecha);
@@ -29,7 +45,10 @@ public class Vuelo {
 
   public Vuelo() {
   }
-
+  /**
+   * Crea un vuelo a partir de un objeto JSON.
+   * Se utiliza al deserializar vuelos desde el archivo JSON.
+   * @param jsonVuelo objeto JSON con los datos del vuelo */
   public Vuelo(JSONObject jsonVuelo){
     this.numeroDeVuelo = jsonVuelo.getString("numeroDeVuelo");
     this.ciudadOrigen = jsonVuelo.getString("ciudadOrigen");
@@ -70,6 +89,10 @@ public class Vuelo {
     if (precio <= 0) throw new IllegalArgumentException("El precio debe ser mayor a 0");
     this.precio = precio; }
   public String getFecha() { return fecha; }
+  public void setFecha(String fecha){
+    Validador.fecha(fecha, "fecha");
+    this.fecha = fecha;
+  }
   public boolean isActivo() {return activo;}
   public void setActivo(boolean activo) {this.activo = activo;}
 

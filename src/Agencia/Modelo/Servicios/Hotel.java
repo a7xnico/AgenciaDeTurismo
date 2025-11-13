@@ -6,6 +6,12 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+/**
+ * Representa un hotel en el sistema de agencia de turismo.
+ * Almacena información básica del hotel como nombre, ubicación, categoría y disponibilidad.
+ * Valida automáticamente todos los datos ingresados.
+ * @author Nicolas */
+
 public class Hotel {
     private static int cantHoteles=0;
     private int idHotel;
@@ -16,6 +22,15 @@ public class Hotel {
     private int habitacionesDisponibles;
     private boolean activo;
 
+    /**
+     * Crea un nuevo hotel con los datos especificados.
+     * Valida que todos los datos sean correctos antes de crear el hotel.
+     * @param nombre el nombre del hotel (no puede estar vacío)
+     * @param ciudad la ciudad donde se ubica (solo letras)
+     * @param estrellas la categoría del hotel (de 1 a 5)
+     * @param precioPorNoche el precio por noche (debe ser mayor a 0)
+     * @param habitaciones cantidad de habitaciones disponibles (no puede ser negativa)
+     * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
     public Hotel(String nombre, String ciudad, int estrellas, double precioPorNoche, int habitaciones) {
         validarDatos(nombre, ciudad, estrellas, precioPorNoche, habitaciones);
         cantHoteles++;
@@ -27,7 +42,10 @@ public class Hotel {
         this.habitacionesDisponibles = habitaciones;
         this.activo = habitaciones > 0;
     }
-
+    /**
+     * Crea un hotel a partir de un objeto JSON.
+     * Se utiliza al deserializar hoteles desde el archivo JSON.
+     * @param jsonHotel objeto JSON con los datos del hotel */
     public Hotel(JSONObject jsonHotel){
         try{
             this.idHotel = jsonHotel.getInt("idHotel");
@@ -67,14 +85,27 @@ public class Hotel {
         this.ciudad = ciudad;}
     public int getEstrellas() {return estrellas;}
     public double getPrecioPorNoche() {return precioPorNoche;}
+
+    /**
+     * Cambia el precio por noche.
+     * @param precioPorNoche el nuevo precio (debe ser mayor a 0)
+     * @throws IllegalArgumentException si el precio no es válido */
     public void setPrecioPorNoche(double precioPorNoche) {
         if (precioPorNoche <= 0) throw new IllegalArgumentException("El precio por noche debe ser mayor a 0");
         this.precioPorNoche = precioPorNoche;}
+
     public int getHabitacionesDisponibles() {return habitacionesDisponibles;}
+
+    /**
+     * Actualiza la cantidad de habitaciones disponibles.
+     * Si la cantidad llega a 0, el hotel se marca como inactivo.
+     * @param habitaciones la nueva cantidad (no puede ser negativa)
+     * @throws IllegalArgumentException si es un número negativo */
     public void setHabitacionesDisponibles(int habitaciones) {
         if (habitaciones < 0) throw new IllegalArgumentException("Las habitaciones no pueden ser negativas");
         this.habitacionesDisponibles = habitaciones;
         this.activo = habitaciones > 0;}
+
     public static int getCantHoteles() {return cantHoteles;}
     public String getIdHotel() {   return String.valueOf(idHotel);}
     public boolean isActivo() {return activo;}
@@ -107,7 +138,9 @@ public class Hotel {
                 + " - " + ciudad + "\n $" + precioPorNoche +
                 "/Noche | Habitaciones: " + habitacionesDisponibles;
     }
-
+    /**
+     * Convierte el hotel a formato JSON para guardar en archivo.
+     * @return objeto JSONObject con todos los datos del hotel */
     public JSONObject toJson(){
         JSONObject jsonHotel = null;
         try{

@@ -1,5 +1,10 @@
 package Agencia.Modelo.Usuarios;
 
+/**
+ * Representa un administrador del sistema.
+ * Solo autentica credenciales (username y password).
+ */
+
 public class Admin {
     private String username;
     private String password;
