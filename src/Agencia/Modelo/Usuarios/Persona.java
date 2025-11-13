@@ -4,6 +4,11 @@ import Agencia.Gestores.Validador;
 
 import java.util.Objects;
 
+/**
+ * Clase padre que representa una persona en el sistema.
+ * Almacena información personal básica: nombre, apellido, DNI y email.
+ * Valida automáticamente todos los datos ingresados. */
+
 public class Persona {
     private String nombre;
     private String apellido;
@@ -11,6 +16,14 @@ public class Persona {
     private String mail;
     private boolean usuarioActivo;
 
+    /**
+     * Crea una nueva persona con los datos especificados.
+     * Valida que todos los datos sean correctos antes de crear la persona.
+     * @param nombre el nombre (solo letras)
+     * @param apellido el apellido (solo letras)
+     * @param dni el DNI (solo números)
+     * @param mail el correo electrónico (debe contener @)
+     * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
     public Persona(String nombre, String apellido, String dni, String mail) {
         validarDatos(nombre, apellido, dni, mail);
         this.nombre = nombre;

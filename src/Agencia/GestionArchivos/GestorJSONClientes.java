@@ -9,6 +9,13 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gestor para serializar y deserializar clientes desde/hacia archivos JSON.
+ *  Convierte listas de clientes a formato JSON para guardarlos en archivo,
+ *  y viceversa al leer el archivo.
+ *  @author Nicolas
+ */
+
 public class GestorJSONClientes {
     private String nomJson = "Clientes.json";
 

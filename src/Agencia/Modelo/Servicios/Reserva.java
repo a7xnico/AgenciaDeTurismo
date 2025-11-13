@@ -9,6 +9,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Representa una reserva de viaje en el sistema.
+ * Una reserva incluye un cliente, un hotel, un vuelo y la cantidad de noches.
+ * Características importantes:
+ * - Calcula automáticamente el total con descuentos según el tipo de cliente
+ * - Actualiza el estado automáticamente según las fechas (PENDIENTE -> CONFIRMADA -> COMPLETADA)
+ * - Solo se cancelan manualmente
+ * @author Nicolas */
+
 public class Reserva{
     private static int contadorReservas = 0;
     private int idReserva;
@@ -20,6 +29,14 @@ public class Reserva{
     private String fechaReserva;
     private EstadoReserva estado;
 
+    /**
+     * Crea una nueva reserva con los datos especificados.
+     * @param cliente el cliente que realiza la reserva
+     * @param hotel el hotel donde se hospedará
+     * @param vuelo el vuelo que tomará
+     * @param noches cantidad de noches de hospedaje (debe ser mayor a 0)
+     * @param fechaReserva fecha en que se realiza la reserva
+     * @throws IllegalArgumentException si algún parámetro es nulo o inválido */
     public Reserva(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches, String fechaReserva) {
         contadorReservas++;
         this.idReserva = contadorReservas;
@@ -31,7 +48,10 @@ public class Reserva{
         calcularTotal();
         this.estado = EstadoReserva.PENDIENTE;
     }
-
+    /**
+     * Crea una reserva a partir de un objeto JSON.
+     * Se utiliza al deserializar reservas desde el archivo JSON.
+     * @param jsonReserva objeto JSON con los datos de la reserva */
     public Reserva(JSONObject jsonReserva){
         try{
             this.idReserva = jsonReserva.getInt("idReserva");
@@ -47,7 +67,10 @@ public class Reserva{
         }
 
     }
-
+    /**
+     * Calcula el total de la reserva.
+     * Suma el costo del hotel (precio/noche × noches) + costo del vuelo.
+     * Luego aplica el descuento según el tipo de cliente (Regular o VIP). */
     public void calcularTotal(){
         double costoHotel = hotel.getPrecioPorNoche() * noches;
         double costoVuelo = vuelo.getPrecio();
@@ -74,10 +97,16 @@ public class Reserva{
     public Hotel getHotel() { return hotel; }
     public Vuelo getVuelo() { return vuelo; }
     public int getNoches() { return noches; }
+    /**
+     * Cambia la cantidad de noches y recalcula el total.
+     * @param noches la nueva cantidad (debe ser mayor a 0)
+     * @throws IllegalArgumentException si es 0 o negativa
+     */
     public void setNoches(int noches) {
         if (noches <= 0) throw new IllegalArgumentException("La cantidad de noches debe ser mayor a 0");
         this.noches = noches;
         calcularTotal();}
+
     public String getFechaReserva() { return fechaReserva; }
     public void setCliente(Cliente cliente) {
         if (cliente == null) throw new IllegalArgumentException("El cliente no puede ser nulo");
@@ -91,6 +120,13 @@ public class Reserva{
     public EstadoReserva getEstado() {return estado;}
     public void setEstado(EstadoReserva estado) {this.estado = estado;}
 
+    /**
+     * Verifica y actualiza automáticamente el estado de la reserva según las fechas.
+     * Cambios automáticos:
+     * - PENDIENTE -> CONFIRMADA: cuando llega la fecha del vuelo
+     * - CONFIRMADA -> COMPLETADA: cuando termina la estancia (vuelo + noches)
+     * @return true si el estado cambió, false si se mantuvo igual
+     */
     public boolean verificarEstado(){
         try{
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -114,7 +150,10 @@ public class Reserva{
         }
         return false;
     }
-
+    /**
+     * Calcula la fecha en que termina la estancia en el hotel.
+     * Se suma la cantidad de noches a la fecha del vuelo.
+     * @return la fecha de fin de estancia en formato dd/MM/yyyy, o null si hay error */
     public String getFinEstancia() {
         try {
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -126,10 +165,6 @@ public class Reserva{
             return null;
         }
     }
-
-
-
-
 
     public String toString(){
         return "Reserva #" + idReserva + " |Cliente: " + cliente.getNombreCompleto() +

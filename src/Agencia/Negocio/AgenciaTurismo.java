@@ -8,6 +8,14 @@ import Agencia.Modelo.Usuarios.Cliente;
 
 import java.util.List;
 
+/**
+ * Clase principal que actúa como fachada del sistema de agencia de turismo.
+ * Centraliza el acceso a todos los gestores (clientes, vuelos, hoteles, reservas)
+ * y proporciona métodos para autenticación de usuarios y administradores.
+ * Todos los gestores se inicializan al crear una instancia de AgenciaTurismo
+ * y cargan automáticamente los datos desde los archivos JSON.
+ */
+
 public class AgenciaTurismo {
     private GestorClientes gestorClientes;
     private GestorVuelos gestorVuelos;
@@ -100,7 +108,16 @@ public class AgenciaTurismo {
     public boolean autenticarAdmin(String usuario, String contrasenia) {
         return autenticador.validarAdmin(usuario, contrasenia);
     }
-
+    /**
+     * Autentica un cliente verificando nombre, DNI y que esté activo.
+     * Validaciones que realiza:
+     * 1. Verifica que nombre y DNI no sean nulos ni estén vacíos
+     * 2. Busca el cliente por DNI en el sistema
+     * 3. Compara el nombre ingresado con el del cliente (sin importar mayúsculas)
+     * 4. Verifica que el cliente esté activo en el sistema
+     * @param nombre el nombre del cliente
+     * @param dni el DNI del cliente
+     * @return true si la autenticación es exitosa, false en caso contrario */
     public boolean autenticarCliente(String nombre, String dni) {
         if (nombre == null || nombre.isEmpty() || dni == null || dni.isEmpty()) return false;
 

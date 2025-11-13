@@ -8,6 +8,14 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gestor para serializar y deserializar reservas desde/hacia archivos JSON.
+ * Convierte listas de reservas a formato JSON para guardarlos en archivo,
+ * y viceversa al leer el archivo.
+ * @author Nicolas
+ */
+
+
 public class GestorJSONReservas {
     private String nomJson = "Reservas.json";
 
