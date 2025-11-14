@@ -7,7 +7,6 @@ import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Hotel;
 import Agencia.Modelo.Servicios.Reserva;
-import Agencia.Modelo.Servicios.Vuelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,15 +70,13 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     @Override
     public void baja(String id) {
-        Reserva reserva = consultar(id);
+        Reserva reserva = reservas.get(id);
         if (reserva == null) throw new EntidadNoEncontradaException("la reserva no existe");
 
         Hotel h = reserva.getHotel();
         reserva.setEstado(EstadoReserva.CANCELADA);
-
         h.setHabitacionesDisponibles(h.getHabitacionesDisponibles() + 1);
 
-        reserva.setEstado(EstadoReserva.CANCELADA);
         guardarJson();
         System.out.println("reserva cancelada exitosamente");
     }
