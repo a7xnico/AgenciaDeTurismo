@@ -13,10 +13,6 @@ public class Autenticador {
         return admin.autenticar(username, password);
     }
 
-    public void cambiarCredenciales(String nuevoUsername, String nuevoPassword){
-        this.admin = new Admin(nuevoUsername, nuevoPassword);
-    }
-
     public Admin getAdmin(){
         return admin;
     }
