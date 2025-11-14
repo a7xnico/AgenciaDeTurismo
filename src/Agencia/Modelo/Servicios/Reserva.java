@@ -1,6 +1,8 @@
 package Agencia.Modelo.Servicios;
 
 import Agencia.Modelo.Enums.EstadoReserva;
+import Agencia.Modelo.Exceptions.DatosInvalidosException;
+import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Usuarios.Cliente;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +38,7 @@ public class Reserva{
      * @param vuelo el vuelo que tomará
      * @param noches cantidad de noches de hospedaje (debe ser mayor a 0)
      * @param fechaReserva fecha en que se realiza la reserva
-     * @throws IllegalArgumentException si algún parámetro es nulo o inválido */
+     * @throws DatosInvalidosException si algún parámetro es nulo o inválido */
     public Reserva(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches, String fechaReserva) {
         contadorReservas++;
         this.idReserva = contadorReservas;
@@ -80,10 +82,10 @@ public class Reserva{
     }
 
     private void validarDatos(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches){
-        if (cliente == null) throw new IllegalArgumentException("El cliente no puede ser nulo");
-        if (hotel == null) throw new IllegalArgumentException("El hotel no puede ser nulo");
-        if (vuelo == null) throw new IllegalArgumentException("El vuelo no puede ser nulo");
-        if (noches <= 0) throw new IllegalArgumentException("La cantidad de noches debe ser mayor a 0");
+        if (cliente == null) throw new DatosInvalidosException("El cliente no puede ser nulo");
+        if (hotel == null) throw new DatosInvalidosException("El hotel no puede ser nulo");
+        if (vuelo == null) throw new DatosInvalidosException("El vuelo no puede ser nulo");
+        if (noches <= 0) throw new DatosInvalidosException("La cantidad de noches debe ser mayor a 0");
     }
 
     private String generarFechaActual() {
@@ -100,22 +102,22 @@ public class Reserva{
     /**
      * Cambia la cantidad de noches y recalcula el total.
      * @param noches la nueva cantidad (debe ser mayor a 0)
-     * @throws IllegalArgumentException si es 0 o negativa
+     * @throws DatosInvalidosException si es 0 o negativa
      */
     public void setNoches(int noches) {
-        if (noches <= 0) throw new IllegalArgumentException("La cantidad de noches debe ser mayor a 0");
+        if (noches <= 0) throw new DatosInvalidosException("La cantidad de noches debe ser mayor a 0");
         this.noches = noches;
         calcularTotal();}
 
     public String getFechaReserva() { return fechaReserva; }
     public void setCliente(Cliente cliente) {
-        if (cliente == null) throw new IllegalArgumentException("El cliente no puede ser nulo");
+        if (cliente == null) throw new DatosInvalidosException("El cliente no puede ser nulo");
         this.cliente = cliente;}
     public void setVuelo(Vuelo vuelo) {
-        if (vuelo == null) throw new IllegalArgumentException("El vuelo no puede ser nulo");
+        if (vuelo == null) throw new DatosInvalidosException("El vuelo no puede ser nulo");
         this.vuelo = vuelo;}
     public void setHotel(Hotel hotel) {
-        if (hotel == null) throw new IllegalArgumentException("El hotel no puede ser nulo");
+        if (hotel == null) throw new DatosInvalidosException ("El hotel no puede ser nulo");
         this.hotel = hotel;}
     public EstadoReserva getEstado() {return estado;}
     public void setEstado(EstadoReserva estado) {this.estado = estado;}
@@ -149,21 +151,6 @@ public class Reserva{
             e.printStackTrace();
         }
         return false;
-    }
-    /**
-     * Calcula la fecha en que termina la estancia en el hotel.
-     * Se suma la cantidad de noches a la fecha del vuelo.
-     * @return la fecha de fin de estancia en formato dd/MM/yyyy, o null si hay error */
-    public String getFinEstancia() {
-        try {
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate fechaVuelo = LocalDate.parse(vuelo.getFecha(), formato);
-            LocalDate fechaFin = fechaVuelo.plusDays(noches);
-            return fechaFin.format(formato);
-        } catch (Exception e) {
-            System.out.println("Error al calcular fecha de fin: " + e.getMessage());
-            return null;
-        }
     }
 
     public String toString(){

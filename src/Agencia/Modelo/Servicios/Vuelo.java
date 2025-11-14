@@ -1,6 +1,7 @@
 package Agencia.Modelo.Servicios;
 
 import Agencia.Gestores.Validador;
+import Agencia.Modelo.Exceptions.DatosInvalidosException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +31,7 @@ public class Vuelo {
    * @param cantPasajeros cantidad de pasajeros disponibles (debe ser mayor a 0)
    * @param precio tarifa del vuelo (debe ser mayor a 0)
    * @param fecha fecha del vuelo en formato dd/MM/yyyy
-   * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
+   * @throws DatosInvalidosException si algún dato no cumple con los requisitos */
   public Vuelo(String numeroDeVuelo,String ciudadOrigen,String ciudadDestino, int cantPasajeros, double precio, String fecha)
   {
     validarDatos(numeroDeVuelo, ciudadOrigen, ciudadDestino, cantPasajeros, precio, fecha);
@@ -82,11 +83,11 @@ public class Vuelo {
     return cantPasajeros;
   }
   public void setCantPasajeros(int cantPasajeros) {
-    if (cantPasajeros <= 0) throw new IllegalArgumentException("La cantidad de pasajeros debera ser mayor a 0");
+    if (cantPasajeros <= 0) throw new DatosInvalidosException("La cantidad de pasajeros debera ser mayor a 0");
     this.cantPasajeros=cantPasajeros;}
   public double getPrecio() { return precio; }
   public void setPrecio(double precio) {
-    if (precio <= 0) throw new IllegalArgumentException("El precio debe ser mayor a 0");
+    if (precio <= 0) throw new DatosInvalidosException("El precio debe ser mayor a 0");
     this.precio = precio; }
   public String getFecha() { return fecha; }
   public void setFecha(String fecha){
@@ -101,8 +102,8 @@ public class Vuelo {
     Validador.soloLetras(ciudadOrigen, "ciudad de origen");
     Validador.soloLetras(ciudadDestino, "ciudad de destino");
     Validador.fecha(fecha, "fecha");
-    if (cantPasajeros <= 0) throw new IllegalArgumentException("La cantidad de pasajeros debera ser mayor a 0");
-    if (precio <= 0) throw new IllegalArgumentException("El precio debe ser mayor a 0");
+    if (cantPasajeros <= 0) throw new DatosInvalidosException("La cantidad de pasajeros debera ser mayor a 0");
+    if (precio <= 0) throw new DatosInvalidosException("El precio debe ser mayor a 0");
   }
 
   public String toString()

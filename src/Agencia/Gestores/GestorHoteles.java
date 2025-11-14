@@ -1,6 +1,7 @@
 package Agencia.Gestores;
 
 import Agencia.GestionArchivos.GestorJSONHoteles;
+import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Hotel;
 
@@ -32,13 +33,13 @@ public class GestorHoteles implements iGestionable<Hotel> {
     /**
      * Agrega un nuevo hotel al sistema.
      * @param hotel el hotel a agregar
-     * @throws IllegalArgumentException si el hotel es nulo*/
+     * @throws EntidadNoEncontradaException si el hotel es nulo*/
 
     @Override
     public void alta(Hotel hotel) {
      if(hotel==null)
      {
-         throw new IllegalArgumentException("el hotel no puede ser nulo");
+         throw new EntidadNoEncontradaException("el hotel no puede ser nulo");
      }
      hoteles.add(hotel);
      guardarJson();
@@ -51,14 +52,14 @@ public class GestorHoteles implements iGestionable<Hotel> {
      * Desactiva un hotel del sistema (baja lógica).
      * El hotel no se elimina, solo se marca como inactivo.
      * @param id el ID del hotel a dar de baja
-     * @throws IllegalArgumentException si el hotel no existe*/
+     * @throws EntidadNoEncontradaException si el hotel no existe*/
 
     @Override
     public void baja(String id) {
         Hotel hotel = consultar(id);
         if(hotel==null)
         {
-            throw new IllegalArgumentException("El hotel no existe.");
+            throw new EntidadNoEncontradaException("El hotel no existe.");
         }
 
         hotel.setActivo(false);
@@ -69,17 +70,17 @@ public class GestorHoteles implements iGestionable<Hotel> {
     /**
      * Modifica los datos de un hotel existente.
      * @param hotel el hotel con los datos actualizados
-     * @throws IllegalArgumentException si el hotel es nulo o no existe en el sistema*/
+     * @throws EntidadNoEncontradaException si el hotel es nulo o no existe en el sistema*/
 
     @Override
     public void modificar(Hotel hotel) {
         if (hotel == null){
-            throw new IllegalArgumentException("El hotel no puede ser nulo");
+            throw new EntidadNoEncontradaException("El hotel no puede ser nulo");
         }
 
         Hotel hotelExistente = consultar(hotel.getIdHotel());
         if (hotelExistente == null){
-            throw new IllegalArgumentException("El hotel no se encuentra en el sistema");
+            throw new EntidadNoEncontradaException("El hotel no se encuentra en el sistema");
         }
 
         hotelExistente.setNombre(hotel.getNombre());

@@ -23,7 +23,7 @@ public class Persona {
      * @param apellido el apellido (solo letras)
      * @param dni el DNI (solo números)
      * @param mail el correo electrónico (debe contener @)
-     * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
+     * @throws  si algún dato no cumple con los requisitos */
     public Persona(String nombre, String apellido, String dni, String mail) {
         validarDatos(nombre, apellido, dni, mail);
         this.nombre = nombre;

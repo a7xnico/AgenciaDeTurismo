@@ -1,5 +1,7 @@
 package Agencia.Gestores;
 import Agencia.GestionArchivos.GestorJSONVuelos;
+import Agencia.Modelo.Exceptions.DatosInvalidosException;
+import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Servicios.Vuelo;
 
@@ -37,11 +39,11 @@ public class GestorVuelos implements iGestionable<Vuelo> {
     /**
      * Agrega un nuevo vuelo al sistema.
      * @param vuelo el vuelo a agregar
-     * @throws IllegalArgumentException si el vuelo es nulo */
+     * @throws DatosInvalidosException si el vuelo es nulo */
     @Override
     public void alta(Vuelo vuelo) {
         if (vuelo == null){
-            throw new IllegalArgumentException("No puede ingresar un vuelo nulo");
+            throw new DatosInvalidosException("No puede ingresar un vuelo nulo");
         }
 
         vuelos.put(vuelo.getNumeroDeVuelo(), vuelo);
@@ -53,13 +55,13 @@ public class GestorVuelos implements iGestionable<Vuelo> {
      * Desactiva un vuelo del sistema (baja lógica).
      * El vuelo no se elimina, solo se marca como inactivo, guardando los datos del mismo
      * @param id el número de vuelo a dar de baja
-     * @throws IllegalArgumentException si el vuelo no existe */
+     * @throws DatosInvalidosException si el vuelo no existe */
     @Override
     public void baja(String id) {
         Vuelo vuelo = consultar(id);
 
         if (vuelo == null){
-            throw new IllegalArgumentException("el vuelo no existe");
+            throw new EntidadNoEncontradaException("el vuelo no existe");
         }
 
         vuelo.setActivo(false);
@@ -75,13 +77,13 @@ public class GestorVuelos implements iGestionable<Vuelo> {
     @Override
     public void modificar(Vuelo vuelo) {
         if(vuelo == null) {
-            throw new IllegalArgumentException("el vuelo no puede ser nulo");
+            throw new DatosInvalidosException("el vuelo no puede ser nulo");
         }
 
         Vuelo vueloExistente = consultar(vuelo.getNumeroDeVuelo());
 
         if(vueloExistente == null) {
-            throw new IllegalArgumentException("el vuelo no existe en el sistema");
+            throw new EntidadNoEncontradaException("el vuelo no existe en el sistema");
         }
 
         vueloExistente.setCiudadOrigen(vuelo.getCiudadOrigen());

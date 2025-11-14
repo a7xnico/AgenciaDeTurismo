@@ -1,6 +1,7 @@
 package Agencia.Modelo.Servicios;
 
 import Agencia.Gestores.Validador;
+import Agencia.Modelo.Exceptions.DatosInvalidosException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +31,7 @@ public class Hotel {
      * @param estrellas la categoría del hotel (de 1 a 5)
      * @param precioPorNoche el precio por noche (debe ser mayor a 0)
      * @param habitaciones cantidad de habitaciones disponibles (no puede ser negativa)
-     * @throws IllegalArgumentException si algún dato no cumple con los requisitos */
+     * @throws DatosInvalidosException si algún dato no cumple con los requisitos */
     public Hotel(String nombre, String ciudad, int estrellas, double precioPorNoche, int habitaciones) {
         validarDatos(nombre, ciudad, estrellas, precioPorNoche, habitaciones);
         cantHoteles++;
@@ -70,9 +71,9 @@ public class Hotel {
         Validador.noVacio(nombre, "nombre del hotel");
         Validador.noVacio(ciudad, "ciudad");
         Validador.soloLetras(ciudad, "ciudad");
-        if (estrellas < 1 || estrellas > 5) throw new IllegalArgumentException("Las estrellas deben estar entre 1 y 5");
-        if (precio <= 0) throw new IllegalArgumentException("El precio por noche debe ser mayor a 0");
-        if (habitaciones < 0) throw new IllegalArgumentException("Las habitaciones disponibles no pueden ser negativas");
+        if (estrellas < 1 || estrellas > 5) throw new DatosInvalidosException("Las estrellas deben estar entre 1 y 5");
+        if (precio <= 0) throw new DatosInvalidosException("El precio por noche debe ser mayor a 0");
+        if (habitaciones < 0) throw new DatosInvalidosException("Las habitaciones disponibles no pueden ser negativas");
     }
 
     public String getNombre() {return nombre;}
@@ -89,9 +90,9 @@ public class Hotel {
     /**
      * Cambia el precio por noche.
      * @param precioPorNoche el nuevo precio (debe ser mayor a 0)
-     * @throws IllegalArgumentException si el precio no es válido */
+     * @throws DatosInvalidosException si el precio no es válido */
     public void setPrecioPorNoche(double precioPorNoche) {
-        if (precioPorNoche <= 0) throw new IllegalArgumentException("El precio por noche debe ser mayor a 0");
+        if (precioPorNoche <= 0) throw new DatosInvalidosException("El precio por noche debe ser mayor a 0");
         this.precioPorNoche = precioPorNoche;}
 
     public int getHabitacionesDisponibles() {return habitacionesDisponibles;}
@@ -100,9 +101,9 @@ public class Hotel {
      * Actualiza la cantidad de habitaciones disponibles.
      * Si la cantidad llega a 0, el hotel se marca como inactivo.
      * @param habitaciones la nueva cantidad (no puede ser negativa)
-     * @throws IllegalArgumentException si es un número negativo */
+     * @throws DatosInvalidosException si es un número negativo */
     public void setHabitacionesDisponibles(int habitaciones) {
-        if (habitaciones < 0) throw new IllegalArgumentException("Las habitaciones no pueden ser negativas");
+        if (habitaciones < 0) throw new DatosInvalidosException("Las habitaciones no pueden ser negativas");
         this.habitacionesDisponibles = habitaciones;
         this.activo = habitaciones > 0;}
 
@@ -113,7 +114,7 @@ public class Hotel {
 
     public void setEstrellas(int estrellas) {
         if (estrellas < 1 || estrellas > 5)
-            throw new IllegalArgumentException("Las estrellas deben estar entre 1 y 5");
+            throw new DatosInvalidosException("Las estrellas deben estar entre 1 y 5");
         this.estrellas = estrellas;
     }
 
