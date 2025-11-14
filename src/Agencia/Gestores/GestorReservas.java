@@ -2,7 +2,10 @@ package Agencia.Gestores;
 
 import Agencia.GestionArchivos.GestorJSONReservas;
 import Agencia.Modelo.Enums.EstadoReserva;
+import Agencia.Modelo.Exceptions.DatosInvalidosException;
+import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Interfaces.iGestionable;
+import Agencia.Modelo.Servicios.Hotel;
 import Agencia.Modelo.Servicios.Reserva;
 import Agencia.Modelo.Servicios.Vuelo;
 
@@ -39,16 +42,23 @@ public class GestorReservas implements iGestionable<Reserva> {
         gestorJson.serializarLista(lista);
     }
 
+    private void validarHabitacionesDisponibles(Hotel hotel) {
+        if (hotel.getHabitacionesDisponibles() <= 0)
+            throw new DatosInvalidosException("No hay habitaciones disponibles en el hotel " + hotel.getNombre());
+    }
+
     /**
      * Agrega una nueva reserva al sistema.
      * @param reserva la reserva a agregar
-     * @throws IllegalArgumentException si la reserva es nula */
+     * @throws DatosInvalidosException si la reserva es nula */
 
     @Override
     public void alta(Reserva reserva) {
-        if (reserva == null) throw new IllegalArgumentException("La reserva no puede ser nula");
-
+        if (reserva == null) throw new DatosInvalidosException("La reserva no puede ser nula");
+        Hotel h = reserva.getHotel();
+        validarHabitacionesDisponibles(h);
         reservas.put(reserva.getIdReserva(), reserva);
+        h.setHabitacionesDisponibles(h.getHabitacionesDisponibles() - 1);
         guardarJson();
         System.out.println("reserva agregada exitosamente");
     }
@@ -57,12 +67,17 @@ public class GestorReservas implements iGestionable<Reserva> {
      * Cancela una reserva existente.
      * La reserva cambia su estado a CANCELADA.
      * @param id el ID de la reserva a cancelar
-     * @throws IllegalArgumentException si la reserva no existe */
+     * @throws EntidadNoEncontradaException si la reserva no existe */
 
     @Override
     public void baja(String id) {
         Reserva reserva = consultar(id);
-        if (reserva == null) throw new IllegalArgumentException("la reserva no existe");
+        if (reserva == null) throw new EntidadNoEncontradaException("la reserva no existe");
+
+        Hotel h = reserva.getHotel();
+        reserva.setEstado(EstadoReserva.CANCELADA);
+
+        h.setHabitacionesDisponibles(h.getHabitacionesDisponibles() + 1);
 
         reserva.setEstado(EstadoReserva.CANCELADA);
         guardarJson();
@@ -77,18 +92,32 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     @Override
     public void modificar(Reserva reserva) {
-        if (reserva == null) throw new IllegalArgumentException("la reserva no puede ser nula");
+        if (reserva == null) throw new DatosInvalidosException("la reserva no puede ser nula");
 
         Reserva reservaExistente = consultar(reserva.getIdReserva());
 
-        if(reservaExistente == null) throw new IllegalArgumentException("la reserva no existe en el sistema");
+        if(reservaExistente == null) throw new EntidadNoEncontradaException("la reserva no existe en el sistema");
+        // Verifica que vaya a cambiarse o no el hotel
+        // Si lo cambia, devuelve al hotel anterior la habitacion disponible para no tener perdida de datos
+        if (!reservaExistente.getHotel().getIdHotel().equals(reserva.getHotel().getIdHotel())) {
+            validarHabitacionesDisponibles(reserva.getHotel());
+            reservaExistente.getHotel().setHabitacionesDisponibles(reservaExistente.getHotel().getHabitacionesDisponibles() + 1);
+            reserva.getHotel().setHabitacionesDisponibles(reserva.getHotel().getHabitacionesDisponibles() - 1);
+        }
 
         reservaExistente.setCliente(reserva.getCliente());
         reservaExistente.setHotel(reserva.getHotel());
         reservaExistente.setVuelo(reserva.getVuelo());
         reservaExistente.setNoches(reserva.getNoches());
         reservaExistente.calcularTotal();
+
+        EstadoReserva estadoAnterior = reservaExistente.getEstado();
         reservaExistente.setEstado(reserva.getEstado());
+
+        if (reserva.getEstado() == EstadoReserva.COMPLETADA && estadoAnterior != EstadoReserva.COMPLETADA) {
+            Hotel hotel = reservaExistente.getHotel();
+            hotel.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles() + 1);
+        }
 
         guardarJson();
         System.out.println("reserva modificada exitosamente");
@@ -102,11 +131,15 @@ public class GestorReservas implements iGestionable<Reserva> {
     public List<Reserva> listado() {
         List<Reserva> reservasActivas = new ArrayList<>();
         for(Reserva r : reservas.values()) {
-            actualizarEstado(r);
-            if(r.getEstado() != EstadoReserva.CANCELADA) {
-                reservasActivas.add(r);
+            EstadoReserva estadoAnterior = r.getEstado();
+            r.verificarEstado();
+            if (r.getEstado() == EstadoReserva.COMPLETADA && estadoAnterior != EstadoReserva.COMPLETADA) {
+                Agencia.Modelo.Servicios.Hotel hotel = r.getHotel();
+                hotel.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles() + 1);
             }
+            if(r.getEstado() != EstadoReserva.CANCELADA) reservasActivas.add(r);
         }
+        guardarJson();
         return reservasActivas;
     }
 
@@ -124,18 +157,13 @@ public class GestorReservas implements iGestionable<Reserva> {
     public Reserva consultar(String id) {
         Reserva reserva = reservas.get(id);
         if (reserva != null) {
-            actualizarEstado(reserva);
-            guardarJson();
+            boolean cambio = reserva.verificarEstado();
+            if (cambio && reserva.getEstado() == EstadoReserva.COMPLETADA) {
+                Agencia.Modelo.Servicios.Hotel hotel = reserva.getHotel();
+                hotel.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles() + 1);
+                guardarJson();
+            }
         }
         return reserva;
-    }
-
-
-    /**
-     * Actualiza el estado de una reserva verificando las fechas.
-     * Se llama automáticamente al consultar o listar reservas.
-     * @param reserva la reserva cuyo estado se debe actualizar */
-    private void actualizarEstado(Reserva reserva){
-        reserva.verificarEstado();
     }
 }

@@ -1,6 +1,7 @@
 package Agencia.Gestores;
 
 import Agencia.GestionArchivos.GestorJSONClientes;
+import Agencia.Modelo.Exceptions.EntidadNoEncontradaException;
 import Agencia.Modelo.Interfaces.iGestionable;
 import Agencia.Modelo.Usuarios.Cliente;
 
@@ -40,14 +41,14 @@ public class GestorClientes implements iGestionable<Cliente> {
      * Agrega un nuevo cliente al sistema.
      *
      * @param cliente el cliente a agregar
-     * @throws IllegalArgumentException si el cliente es nulo
+     * @throws EntidadNoEncontradaException si el cliente es nulo
      */
 
     @Override
     public void alta(Cliente cliente) {
         if(cliente==null)
         {
-            throw new IllegalArgumentException("el cliente no puede ser nulo");
+            throw new EntidadNoEncontradaException("el cliente no puede ser nulo");
 
         }else
         {
@@ -62,14 +63,14 @@ public class GestorClientes implements iGestionable<Cliente> {
      * Desactiva un cliente del sistema (baja lógica).
      * El cliente no se es eliminado del sistema, solo se considera inactivo
      * @param dni el DNI del cliente a dar de baja
-     * @throws IllegalArgumentException si el cliente no existe
+     * @throws EntidadNoEncontradaException si el cliente no existe
      */
 
     @Override
     public void baja(String dni) {
         Cliente cliente = consultar(dni);
         if (cliente ==  null){
-            throw new IllegalArgumentException("El cliente no existe");
+            throw new EntidadNoEncontradaException("El cliente no existe");
         }
         cliente.setUsuarioActivo(false);
         guardarJson();
@@ -78,18 +79,18 @@ public class GestorClientes implements iGestionable<Cliente> {
     /**
      * Modifica los datos de un cliente existente.
      * @param cliente el cliente con los datos actualizados
-     * @throws IllegalArgumentException si el cliente es nulo o no existe en el sistema
+     * @throws EntidadNoEncontradaException si el cliente es nulo o no existe en el sistema
      */
 
     @Override
     public void modificar(Cliente cliente) {
         if (cliente == null){
-            throw new IllegalArgumentException("El cliente no puede ser nulo");
+            throw new EntidadNoEncontradaException("El cliente no puede ser nulo");
         }
 
         Cliente clienteExistente = consultar(cliente.getDni());
         if (clienteExistente == null){
-            throw new IllegalArgumentException("El cliente a modificar no se encuentra en el sistema");
+            throw new EntidadNoEncontradaException("El cliente a modificar no se encuentra en el sistema");
         }
 
         clientes.remove(clienteExistente);
