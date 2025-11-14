@@ -39,6 +39,7 @@ public class Reserva{
      * @param noches cantidad de noches de hospedaje (debe ser mayor a 0)
      * @throws DatosInvalidosException si algún parámetro es nulo o inválido */
     public Reserva(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches) {
+        validarDatos(cliente, hotel, vuelo, noches);
         contadorReservas++;
         this.idReserva = contadorReservas;
         this.cliente = cliente;
@@ -120,6 +121,7 @@ public class Reserva{
         this.hotel = hotel;}
     public EstadoReserva getEstado() {return estado;}
     public void setEstado(EstadoReserva estado) {this.estado = estado;}
+    public static void setContadorReservas(int valor) {contadorReservas = valor;}
 
     /**
      * Verifica y actualiza automáticamente el estado de la reserva según las fechas.

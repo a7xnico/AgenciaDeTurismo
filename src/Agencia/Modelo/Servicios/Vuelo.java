@@ -60,14 +60,8 @@ public class Vuelo {
     this.activo = jsonVuelo.getBoolean("activo");
   }
 
-  public String getNumeroDeVuelo()
-  {
-    return numeroDeVuelo;
-  }
-   public String getCiudadOrigen()
-  {
-    return ciudadOrigen;
-  }
+  public String getNumeroDeVuelo() {return numeroDeVuelo;}
+   public String getCiudadOrigen() {return ciudadOrigen;}
   public void setCiudadOrigen(String ciudadOrigen) {
     Validador.noVacio(numeroDeVuelo, "número de vuelo");
     this.ciudadOrigen = ciudadOrigen;}
