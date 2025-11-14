@@ -1,0 +1,138 @@
+[
+    {
+        "idHotel": 1,
+        "ciudad": "Londres",
+        "nombre": "The Ritz London",
+        "habitacionesDisponibles": 135,
+        "estrellas": 5,
+        "precioPorNoche": 800,
+        "activo": true
+    },
+    {
+        "idHotel": 2,
+        "ciudad": "Ciudad de México",
+        "nombre": "Hotel Santa Fe",
+        "habitacionesDisponibles": 89,
+        "estrellas": 3,
+        "precioPorNoche": 120,
+        "activo": true
+    },
+    {
+        "idHotel": 3,
+        "ciudad": "Tokio",
+        "nombre": "Shinjuku Granbell Hotel",
+        "habitacionesDisponibles": 504,
+        "estrellas": 4,
+        "precioPorNoche": 150,
+        "activo": false
+    },
+    {
+        "idHotel": 4,
+        "ciudad": "Foz do Iguazu",
+        "nombre": "Hotel Iguazu Falls",
+        "habitacionesDisponibles": 99,
+        "estrellas": 4,
+        "precioPorNoche": 200,
+        "activo": true
+    },
+    {
+        "idHotel": 5,
+        "ciudad": "Dubái",
+        "nombre": "Marriott Dubai Marina",
+        "habitacionesDisponibles": 339,
+        "estrellas": 5,
+        "precioPorNoche": 300,
+        "activo": true
+    },
+    {
+        "idHotel": 6,
+        "ciudad": "Madrid",
+        "nombre": "Hotel Casa Blanca",
+        "habitacionesDisponibles": 49,
+        "estrellas": 3,
+        "precioPorNoche": 90,
+        "activo": true
+    },
+    {
+        "idHotel": 7,
+        "ciudad": "París",
+        "nombre": "Pullman Paris Montparnasse",
+        "habitacionesDisponibles": 812,
+        "estrellas": 4,
+        "precioPorNoche": 180,
+        "activo": true
+    },
+    {
+        "idHotel": 8,
+        "ciudad": "Estambul",
+        "nombre": "The Vari Hotel",
+        "habitacionesDisponibles": 67,
+        "estrellas": 4,
+        "precioPorNoche": 100,
+        "activo": false
+    },
+    {
+        "idHotel": 9,
+        "ciudad": "Tokio",
+        "nombre": "Grand Hyatt Tokyo",
+        "habitacionesDisponibles": 376,
+        "estrellas": 5,
+        "precioPorNoche": 500,
+        "activo": true
+    },
+    {
+        "idHotel": 10,
+        "ciudad": "Bangalore",
+        "nombre": "Hotel Royal Orchid",
+        "habitacionesDisponibles": 199,
+        "estrellas": 4,
+        "precioPorNoche": 80,
+        "activo": true
+    },
+    {
+        "idHotel": 11,
+        "ciudad": "Santiago De Chile",
+        "nombre": "Hotel Bungalows Las Garzas",
+        "habitacionesDisponibles": 29,
+        "estrellas": 3,
+        "precioPorNoche": 70,
+        "activo": true
+    },
+    {
+        "idHotel": 12,
+        "ciudad": "Dublín",
+        "nombre": "The Westin Dublin",
+        "habitacionesDisponibles": 171,
+        "estrellas": 4,
+        "precioPorNoche": 220,
+        "activo": true
+    },
+    {
+        "idHotel": 13,
+        "ciudad": "San José",
+        "nombre": "Hotel Presidente",
+        "habitacionesDisponibles": 68,
+        "estrellas": 3,
+        "precioPorNoche": 85,
+        "activo": true
+    },
+    {
+        "idHotel": 14,
+        "ciudad": "Sídney",
+        "nombre": "Sofitel Sydney",
+        "habitacionesDisponibles": 234,
+        "estrellas": 5,
+        "precioPorNoche": 350,
+        "activo": true
+    },
+    {
+        "idHotel": 15,
+        "ciudad": "Buenos Aires",
+        "nombre": "Hotel Bolivar",
+        "habitacionesDisponibles": 158,
+        "estrellas": 4,
+        "precioPorNoche": 120,
+        "activo": false
+    }
+
+]

@@ -1,0 +1,512 @@
+[
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "alemac@gmail.com",
+            "apellido": "Mac Allister",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Alexis",
+            "dni": "13"
+        },
+        "total": 1130.5,
+        "estado": "CANCELADA",
+        "hotel": {
+            "idHotel": 11,
+            "ciudad": "Santiago De Chile",
+            "nombre": "Hotel Bungalows Las Garzas",
+            "habitacionesDisponibles": 30,
+            "estrellas": 3,
+            "precioPorNoche": 70,
+            "activo": true
+        },
+        "noches": 10,
+        "vuelo": {
+            "fecha": "03/06/2026",
+            "precio": 630,
+            "ciudadOrigen": "Lisboa",
+            "numeroDeVuelo": "TP508",
+            "cantPasajeros": 6,
+            "ciudadDestino": "Santiago De Chile",
+            "activo": true
+        },
+        "idReserva": 11,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "enzofer@gmail.com",
+            "apellido": "Fernandez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Enzo",
+            "dni": "66"
+        },
+        "total": 2363,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 9,
+            "ciudad": "Tokio",
+            "nombre": "Grand Hyatt Tokyo",
+            "habitacionesDisponibles": 376,
+            "estrellas": 5,
+            "precioPorNoche": 500,
+            "activo": true
+        },
+        "noches": 5,
+        "vuelo": {
+            "fecha": "14/07/2026",
+            "precio": 280,
+            "ciudadOrigen": "Sídney",
+            "numeroDeVuelo": "QF730",
+            "cantPasajeros": 4,
+            "ciudadDestino": "Tokio",
+            "activo": true
+        },
+        "idReserva": 12,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "nicogonzalez@gmail.com",
+            "apellido": "Gonzalez",
+            "usuarioActivo": false,
+            "descuentoAcumulado": 15,
+            "nombre": "Nicolas",
+            "dni": "43"
+        },
+        "total": 2167.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 4,
+            "ciudad": "Foz do Iguazu",
+            "nombre": "Hotel Iguazu Falls",
+            "habitacionesDisponibles": 99,
+            "estrellas": 4,
+            "precioPorNoche": 200,
+            "activo": true
+        },
+        "noches": 7,
+        "vuelo": {
+            "fecha": "22/04/2026",
+            "precio": 1150,
+            "ciudadOrigen": "Paris",
+            "numeroDeVuelo": "AF307",
+            "cantPasajeros": 3,
+            "ciudadDestino": "Foz Do Iguacu",
+            "activo": true
+        },
+        "idReserva": 13,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "nicopaz@gmail.com",
+            "apellido": "Paz",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Nicolas",
+            "dni": "72"
+        },
+        "total": 603.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 10,
+            "ciudad": "Bangalore",
+            "nombre": "Hotel Royal Orchid",
+            "habitacionesDisponibles": 199,
+            "estrellas": 4,
+            "precioPorNoche": 80,
+            "activo": true
+        },
+        "noches": 4,
+        "vuelo": {
+            "fecha": "05/08/2026",
+            "precio": 390,
+            "ciudadOrigen": "Dubai",
+            "numeroDeVuelo": "EK911",
+            "cantPasajeros": 2,
+            "ciudadDestino": "Bangalore",
+            "activo": true
+        },
+        "idReserva": 14,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "franarmani@gmail.com",
+            "apellido": "Armani",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Franco",
+            "dni": "8"
+        },
+        "total": 3323.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 5,
+            "ciudad": " Dubái",
+            "nombre": "Marriott Dubai Marina",
+            "habitacionesDisponibles": 339,
+            "estrellas": 5,
+            "precioPorNoche": 300,
+            "activo": true
+        },
+        "noches": 12,
+        "vuelo": {
+            "fecha": "30/03/2026",
+            "precio": 310,
+            "ciudadOrigen": "Doha",
+            "numeroDeVuelo": "QR602",
+            "cantPasajeros": 4,
+            "ciudadDestino": "Dubai",
+            "activo": true
+        },
+        "idReserva": 15,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "franmastantuono@gmail.com",
+            "apellido": "Mastantuono",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Franco",
+            "dni": "31"
+        },
+        "total": 4488,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 9,
+            "ciudad": "Tokio",
+            "nombre": "Grand Hyatt Tokyo",
+            "habitacionesDisponibles": 375,
+            "estrellas": 5,
+            "precioPorNoche": 500,
+            "activo": true
+        },
+        "noches": 10,
+        "vuelo": {
+            "fecha": "14/07/2026",
+            "precio": 280,
+            "ciudadOrigen": "Sídney",
+            "numeroDeVuelo": "QF730",
+            "cantPasajeros": 4,
+            "ciudadDestino": "Tokio",
+            "activo": true
+        },
+        "idReserva": 1,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "enzofer@gmail.com",
+            "apellido": "Fernandez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Enzo",
+            "dni": "66"
+        },
+        "total": 1623.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 12,
+            "ciudad": "Dublín",
+            "nombre": "The Westin Dublin",
+            "habitacionesDisponibles": 170,
+            "estrellas": 4,
+            "precioPorNoche": 220,
+            "activo": true
+        },
+        "noches": 8,
+        "vuelo": {
+            "fecha": "28/02/2026",
+            "precio": 150,
+            "ciudadOrigen": "Amsterdam",
+            "numeroDeVuelo": "KL221",
+            "cantPasajeros": 2,
+            "ciudadDestino": "Cuidad de Mexico",
+            "activo": true
+        },
+        "idReserva": 2,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "REGULAR",
+            "mail": "antofer@gmail.com",
+            "apellido": "Fernandez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 5,
+            "nombre": "Antonio",
+            "dni": "24"
+        },
+        "total": 1472.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 3,
+            "ciudad": "Tokio",
+            "nombre": "Shinjuku Granbell Hotel",
+            "habitacionesDisponibles": 504,
+            "estrellas": 4,
+            "precioPorNoche": 150,
+            "activo": false
+        },
+        "noches": 8,
+        "vuelo": {
+            "fecha": "18/02/2026",
+            "precio": 350,
+            "ciudadOrigen": "Ciudad de México",
+            "numeroDeVuelo": "MX540",
+            "cantPasajeros": 3,
+            "ciudadDestino": "Tokio",
+            "activo": true
+        },
+        "idReserva": 3,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "REGULAR",
+            "mail": "juanmar@gmail.com",
+            "apellido": "Martinez",
+            "usuarioActivo": false,
+            "descuentoAcumulado": 5,
+            "nombre": "Juan",
+            "dni": "6"
+        },
+        "total": 817,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 7,
+            "ciudad": "París",
+            "nombre": "Pullman Paris Montparnasse",
+            "habitacionesDisponibles": 812,
+            "estrellas": 4,
+            "precioPorNoche": 180,
+            "activo": true
+        },
+        "noches": 4,
+        "vuelo": {
+            "fecha": "02/05/2026",
+            "precio": 140,
+            "ciudadOrigen": "Madrid",
+            "numeroDeVuelo": "IB781",
+            "cantPasajeros": 2,
+            "ciudadDestino": "París",
+            "activo": true
+        },
+        "idReserva": 4,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "REGULAR",
+            "mail": "liomessi@gmail.com",
+            "apellido": "Messi",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 5,
+            "nombre": "Lionel",
+            "dni": "9"
+        },
+        "total": 5016,
+        "estado": "CANCELADA",
+        "hotel": {
+            "idHotel": 1,
+            "ciudad": "Londres",
+            "nombre": "The Ritz London",
+            "habitacionesDisponibles": 136,
+            "estrellas": 5,
+            "precioPorNoche": 800,
+            "activo": true
+        },
+        "noches": 6,
+        "vuelo": {
+            "fecha": "21/03/2026",
+            "precio": 480,
+            "ciudadOrigen": "Bogota",
+            "numeroDeVuelo": "AV914",
+            "cantPasajeros": 3,
+            "ciudadDestino": "Londres",
+            "activo": true
+        },
+        "idReserva": 5,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "REGULAR",
+            "mail": "rodridepaul@gmail.com",
+            "apellido": "De paul",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 5,
+            "nombre": "Rodrigo",
+            "dni": "63"
+        },
+        "total": 285,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 13,
+            "ciudad": "San José",
+            "nombre": "Hotel Presidente",
+            "habitacionesDisponibles": 68,
+            "estrellas": 3,
+            "precioPorNoche": 85,
+            "activo": true
+        },
+        "noches": 2,
+        "vuelo": {
+            "fecha": "11/06/2026",
+            "precio": 130,
+            "ciudadOrigen": "Barcelona",
+            "numeroDeVuelo": "UX320",
+            "cantPasajeros": 4,
+            "ciudadDestino": "San Jose",
+            "activo": true
+        },
+        "idReserva": 6,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "REGULAR",
+            "mail": "dibumartinez@gmail.com",
+            "apellido": "Martinez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 5,
+            "nombre": "Emiliano",
+            "dni": "48"
+        },
+        "total": 3382,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 14,
+            "ciudad": "Sídney",
+            "nombre": "Sofitel Sydney",
+            "habitacionesDisponibles": 234,
+            "estrellas": 5,
+            "precioPorNoche": 350,
+            "activo": true
+        },
+        "noches": 9,
+        "vuelo": {
+            "fecha": "29/04/2026",
+            "precio": 410,
+            "ciudadOrigen": "Cancun",
+            "numeroDeVuelo": "AM665",
+            "cantPasajeros": 2,
+            "ciudadDestino": "Sidney",
+            "activo": true
+        },
+        "idReserva": 7,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "franmastantuono@gmail.com",
+            "apellido": "Mastantuono",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Franco",
+            "dni": "31"
+        },
+        "total": 1156,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 15,
+            "ciudad": "Buenos Aires",
+            "nombre": "Hotel Bolivar",
+            "habitacionesDisponibles": 158,
+            "estrellas": 4,
+            "precioPorNoche": 120,
+            "activo": true
+        },
+        "noches": 5,
+        "vuelo": {
+            "fecha": "17/05/2026",
+            "precio": 760,
+            "ciudadOrigen": "Miami",
+            "numeroDeVuelo": "AA443",
+            "cantPasajeros": 5,
+            "ciudadDestino": "Buenos Aires",
+            "activo": true
+        },
+        "idReserva": 8,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "julialvarez@gmail.com",
+            "apellido": "Alvarez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Julian",
+            "dni": "52"
+        },
+        "total": 675.75,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 8,
+            "ciudad": "Estambul",
+            "nombre": "The Vari Hotel",
+            "habitacionesDisponibles": 67,
+            "estrellas": 4,
+            "precioPorNoche": 100,
+            "activo": false
+        },
+        "noches": 7,
+        "vuelo": {
+            "fecha": "07/03/2026",
+            "precio": 95,
+            "ciudadOrigen": "Dublin",
+            "numeroDeVuelo": "FR902",
+            "cantPasajeros": 3,
+            "ciudadDestino": "Estambul",
+            "activo": true
+        },
+        "idReserva": 9,
+        "fechaReserva": "14/11/2025"
+    },
+    {
+        "cliente": {
+            "tipoCliente": "VIP",
+            "mail": "toromartinez@gmail.com",
+            "apellido": "Martinez",
+            "usuarioActivo": true,
+            "descuentoAcumulado": 15,
+            "nombre": "Lautaro",
+            "dni": "17"
+        },
+        "total": 739.5,
+        "estado": "PENDIENTE",
+        "hotel": {
+            "idHotel": 2,
+            "ciudad": "Ciudad de México",
+            "nombre": "Hotel Santa Fe",
+            "habitacionesDisponibles": 89,
+            "estrellas": 3,
+            "precioPorNoche": 120,
+            "activo": true
+        },
+        "noches": 6,
+        "vuelo": {
+            "fecha": "28/02/2026",
+            "precio": 150,
+            "ciudadOrigen": "Amsterdam",
+            "numeroDeVuelo": "KL221",
+            "cantPasajeros": 2,
+            "ciudadDestino": "Cuidad de Mexico",
+            "activo": true
+        },
+        "idReserva": 10,
+        "fechaReserva": "14/11/2025"
+    }
+]
