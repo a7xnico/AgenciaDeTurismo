@@ -31,9 +31,15 @@ public class GestorReservas implements iGestionable<Reserva> {
 
     private void cargarJson(){
         List<Reserva> listReservas = gestorJson.deserializarLista();
-        if (listReservas != null && !listReservas.isEmpty())
-            for (Reserva r : listReservas)
+        if (listReservas != null && !listReservas.isEmpty()){
+            int maxId = 0;
+            for (Reserva r : listReservas){
                 reservas.put(r.getIdReserva(), r);
+                int id = Integer.parseInt(r.getIdReserva());
+                if (id > maxId) maxId = id;
+            }
+            Reserva.setContadorReservas(maxId);
+        }
     }
 
     private void guardarJson(){

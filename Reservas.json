@@ -138,66 +138,32 @@
     {
         "cliente": {
             "tipoCliente": "VIP",
-            "mail": "franarmani@gmail.com",
-            "apellido": "Armani",
+            "mail": "enzofer@gmail.com",
+            "apellido": "Fernandez",
             "usuarioActivo": true,
             "descuentoAcumulado": 15,
-            "nombre": "Franco",
-            "dni": "8"
+            "nombre": "Enzo",
+            "dni": "66"
         },
-        "total": 3323.5,
-        "estado": "PENDIENTE",
+        "total": 1827.5,
+        "estado": "CANCELADA",
         "hotel": {
-            "idHotel": 5,
-            "ciudad": " Dubái",
-            "nombre": "Marriott Dubai Marina",
-            "habitacionesDisponibles": 339,
-            "estrellas": 5,
-            "precioPorNoche": 300,
-            "activo": true
-        },
-        "noches": 12,
-        "vuelo": {
-            "fecha": "30/03/2026",
-            "precio": 310,
-            "ciudadOrigen": "Doha",
-            "numeroDeVuelo": "QR602",
-            "cantPasajeros": 4,
-            "ciudadDestino": "Dubai",
-            "activo": true
-        },
-        "idReserva": 15,
-        "fechaReserva": "14/11/2025"
-    },
-    {
-        "cliente": {
-            "tipoCliente": "REGULAR",
-            "mail": "baltasaro@gmsil.com",
-            "apellido": "rodriguez",
-            "usuarioActivo": true,
-            "descuentoAcumulado": 5,
-            "nombre": "Baltasar",
-            "dni": "1"
-        },
-        "total": 1273,
-        "estado": "PENDIENTE",
-        "hotel": {
-            "idHotel": 6,
-            "ciudad": "Madrid",
-            "nombre": "Hotel Casa Blanca",
-            "habitacionesDisponibles": 49,
-            "estrellas": 3,
-            "precioPorNoche": 90,
+            "idHotel": 4,
+            "ciudad": "Foz do Iguazu",
+            "nombre": "Hotel Iguazu Falls",
+            "habitacionesDisponibles": 99,
+            "estrellas": 4,
+            "precioPorNoche": 200,
             "activo": true
         },
         "noches": 5,
         "vuelo": {
-            "fecha": "12/03/2026",
-            "precio": 890,
-            "ciudadOrigen": "Buenos Aires",
-            "numeroDeVuelo": "AR102",
-            "cantPasajeros": 4,
-            "ciudadDestino": "Madrid",
+            "fecha": "22/04/2026",
+            "precio": 1150,
+            "ciudadOrigen": "Paris",
+            "numeroDeVuelo": "AF307",
+            "cantPasajeros": 3,
+            "ciudadDestino": "Foz Do Iguacu",
             "activo": true
         },
         "idReserva": 1,
