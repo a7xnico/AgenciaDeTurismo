@@ -192,6 +192,11 @@ public class AgenciaTurismo {
     public boolean autenticarAdmin(String usuario, String contrasenia) {
         return autenticador.validarAdmin(usuario, contrasenia);
     }
+
+    public void cambiarCredencialesAdmin(String nuevoUsername, String nuevoPassword) {
+        autenticador.cambiarCredenciales(nuevoUsername, nuevoPassword);
+    }
+
     /**
      * Autentica un cliente verificando nombre, DNI y que esté activo.
      * Validaciones que realiza:
