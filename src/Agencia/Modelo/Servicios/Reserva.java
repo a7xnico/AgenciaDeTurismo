@@ -37,9 +37,8 @@ public class Reserva{
      * @param hotel el hotel donde se hospedará
      * @param vuelo el vuelo que tomará
      * @param noches cantidad de noches de hospedaje (debe ser mayor a 0)
-     * @param fechaReserva fecha en que se realiza la reserva
      * @throws DatosInvalidosException si algún parámetro es nulo o inválido */
-    public Reserva(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches, String fechaReserva) {
+    public Reserva(Cliente cliente, Hotel hotel, Vuelo vuelo, int noches) {
         contadorReservas++;
         this.idReserva = contadorReservas;
         this.cliente = cliente;

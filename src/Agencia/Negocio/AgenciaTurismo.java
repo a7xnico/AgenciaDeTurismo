@@ -49,6 +49,25 @@ public class AgenciaTurismo {
         return gestorClientes.listado();
     }
 
+    public void mostrarListadoClientes() {
+        System.out.println("\n========== LISTADO DE CLIENTES ==========");
+        List<Cliente> clientes = listadoClientes();
+
+        if (clientes.isEmpty()) {
+            System.out.println("No hay clientes registrados");
+            return;
+        }
+
+        System.out.println("Total de clientes: " + clientes.size());
+        System.out.println("-----------------------------------------");
+
+        for (Cliente c : clientes) {
+            System.out.println(c.toString());
+            System.out.println("-----------------------------------------");
+        }
+    }
+
+
     //  Hoteles
 
     public void altaHotel(Hotel hotel) {
@@ -66,6 +85,25 @@ public class AgenciaTurismo {
     public List<Hotel> listadoHoteles() {
         return gestorHoteles.listado();
     }
+
+    public void mostrarListadoHoteles() {
+        System.out.println("\n========== LISTADO DE HOTELES ==========");
+        List<Hotel> hoteles = listadoHoteles();
+
+        if (hoteles.isEmpty()) {
+            System.out.println("No hay hoteles registrados");
+            return;
+        }
+
+        System.out.println("Total de hoteles: " + hoteles.size());
+        System.out.println("-----------------------------------------");
+
+        for (Hotel h : hoteles) {
+            System.out.println(h.toString());
+            System.out.println("-----------------------------------------");
+        }
+    }
+
 
     // VUELOS
 
@@ -85,6 +123,25 @@ public class AgenciaTurismo {
         return gestorVuelos.listado();
     }
 
+    public void mostrarListadoVuelos() {
+        System.out.println("\n========== LISTADO DE VUELOS ==========");
+        List<Vuelo> vuelos = listadoVuelos();
+
+        if (vuelos.isEmpty()) {
+            System.out.println("No hay vuelos registrados");
+            return;
+        }
+
+        System.out.println("Total de vuelos: " + vuelos.size());
+        System.out.println("-----------------------------------------");
+
+        for (Vuelo v : vuelos) {
+            System.out.println(v.toString());
+            System.out.println("-----------------------------------------");
+        }
+    }
+
+
     // RESERVAS
 
     public void altaReserva(Reserva reserva) {
@@ -101,6 +158,33 @@ public class AgenciaTurismo {
 
     public List<Reserva> listadoReservas() {
         return gestorReservas.listado();
+    }
+
+    public void mostrarListadoReservas() {
+        System.out.println("\n========== LISTADO DE RESERVAS ==========");
+        List<Reserva> reservas = listadoReservas();
+
+        if (reservas.isEmpty()) {
+            System.out.println("No hay reservas registradas");
+            return;
+        }
+
+        System.out.println("Total de reservas: " + reservas.size());
+        System.out.println("-----------------------------------------");
+
+        for (Reserva r : reservas) {
+            System.out.println(r.toString());
+            System.out.println("-----------------------------------------");
+        }
+    }
+
+    public void mostrarResumenGeneral() {
+        System.out.println("\n========== RESUMEN GENERAL ==========");
+        System.out.println("Total de clientes: " + listadoClientes().size());
+        System.out.println("Total de hoteles: " + listadoHoteles().size());
+        System.out.println("Total de vuelos: " + listadoVuelos().size());
+        System.out.println("Total de reservas: " + listadoReservas().size());
+        System.out.println("=====================================\n");
     }
 
     // AUTENTICACIÓN
@@ -148,4 +232,5 @@ public class AgenciaTurismo {
     public Autenticador getAutenticador() {
         return autenticador;
     }
+
 }
