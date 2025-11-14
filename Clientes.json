@@ -1,0 +1,137 @@
+[
+    {
+        "tipoCliente": "VIP",
+        "mail": "enzofer@gmail.com",
+        "apellido": "Fernandez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Enzo",
+        "dni": "66"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "franalva@gmail.com",
+        "apellido": "Alvarez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Franco",
+        "dni": "45"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "antofer@gmail.com",
+        "apellido": "Fernandez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Antonio",
+        "dni": "24"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "alemac@gmail.com",
+        "apellido": "Mac Allister",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Alexis",
+        "dni": "13"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "dibumartinez@gmail.com",
+        "apellido": "Martinez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Emiliano",
+        "dni": "48"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "toromartinez@gmail.com",
+        "apellido": "Martinez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Lautaro",
+        "dni": "17"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "baltasaro@gmsil.com",
+        "apellido": "rodriguez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Baltasar",
+        "dni": "1"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "juanmar@gmail.com",
+        "apellido": "Martinez",
+        "usuarioActivo": false,
+        "descuentoAcumulado": 5,
+        "nombre": "Juan",
+        "dni": "6"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "franarmani@gmail.com",
+        "apellido": "Armani",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Franco",
+        "dni": "8"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "liomessi@gmail.com",
+        "apellido": "Messi",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Lionel",
+        "dni": "9"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "nicopaz@gmail.com",
+        "apellido": "Paz",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Nicolas",
+        "dni": "72"
+    },
+    {
+        "tipoCliente": "REGULAR",
+        "mail": "rodridepaul@gmail.com",
+        "apellido": "De paul",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 5,
+        "nombre": "Rodrigo",
+        "dni": "63"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "julialvarez@gmail.com",
+        "apellido": "Alvarez",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Julian",
+        "dni": "52"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "franmastantuono@gmail.com",
+        "apellido": "Mastantuono",
+        "usuarioActivo": true,
+        "descuentoAcumulado": 15,
+        "nombre": "Franco",
+        "dni": "31"
+    },
+    {
+        "tipoCliente": "VIP",
+        "mail": "nicogonzalez@gmail.com",
+        "apellido": "Gonzalez",
+        "usuarioActivo": false,
+        "descuentoAcumulado": 15,
+        "nombre": "Nicolas",
+        "dni": "43"
+    }
+]

@@ -1,0 +1,137 @@
+[
+    {
+        "fecha": "17/05/2026",
+        "precio": 760,
+        "ciudadOrigen": "Miami",
+        "numeroDeVuelo": "AA443",
+        "cantPasajeros": 5,
+        "ciudadDestino": "Buenos Aires",
+        "activo": true
+    },
+    {
+        "fecha": "22/04/2026",
+        "precio": 1150,
+        "ciudadOrigen": "Paris",
+        "numeroDeVuelo": "AF307",
+        "cantPasajeros": 3,
+        "ciudadDestino": "Foz Do Iguacu",
+        "activo": true
+    },
+    {
+        "fecha": "18/02/2026",
+        "precio": 350,
+        "ciudadOrigen": "Ciudad de México",
+        "numeroDeVuelo": "MX540",
+        "cantPasajeros": 3,
+        "ciudadDestino": "Tokio",
+        "activo": true
+    },
+    {
+        "fecha": "03/06/2026",
+        "precio": 630,
+        "ciudadOrigen": "Lisboa",
+        "numeroDeVuelo": "TP508",
+        "cantPasajeros": 6,
+        "ciudadDestino": "Santiago De Chile",
+        "activo": true
+    },
+    {
+        "fecha": "14/07/2026",
+        "precio": 280,
+        "ciudadOrigen": "Sídney",
+        "numeroDeVuelo": "QF730",
+        "cantPasajeros": 4,
+        "ciudadDestino": "Tokio",
+        "activo": true
+    },
+    {
+        "fecha": "30/03/2026",
+        "precio": 310,
+        "ciudadOrigen": "Doha",
+        "numeroDeVuelo": "QR602",
+        "cantPasajeros": 4,
+        "ciudadDestino": "Dubai",
+        "activo": true
+    },
+    {
+        "fecha": "07/03/2026",
+        "precio": 95,
+        "ciudadOrigen": "Dublin",
+        "numeroDeVuelo": "FR902",
+        "cantPasajeros": 3,
+        "ciudadDestino": "Estambul",
+        "activo": true
+    },
+    {
+        "fecha": "04/05/2026",
+        "precio": 220,
+        "ciudadOrigen": "Santiago de Chile",
+        "numeroDeVuelo": "LA233",
+        "cantPasajeros": 2,
+        "ciudadDestino": "Dublin",
+        "activo": true
+    },
+    {
+        "fecha": "02/05/2026",
+        "precio": 140,
+        "ciudadOrigen": "Madrid",
+        "numeroDeVuelo": "IB781",
+        "cantPasajeros": 2,
+        "ciudadDestino": "París",
+        "activo": false
+    },
+    {
+        "fecha": "28/02/2026",
+        "precio": 150,
+        "ciudadOrigen": "Amsterdam",
+        "numeroDeVuelo": "KL221",
+        "cantPasajeros": 2,
+        "ciudadDestino": "Cuidad de Mexico",
+        "activo": true
+    },
+    {
+        "fecha": "11/06/2026",
+        "precio": 130,
+        "ciudadOrigen": "Barcelona",
+        "numeroDeVuelo": "UX320",
+        "cantPasajeros": 4,
+        "ciudadDestino": "San Jose",
+        "activo": true
+    },
+    {
+        "fecha": "12/03/2026",
+        "precio": 890,
+        "ciudadOrigen": "Buenos Aires",
+        "numeroDeVuelo": "AR102",
+        "cantPasajeros": 4,
+        "ciudadDestino": "Madrid",
+        "activo": true
+    },
+    {
+        "fecha": "21/03/2026",
+        "precio": 480,
+        "ciudadOrigen": "Bogota",
+        "numeroDeVuelo": "AV914",
+        "cantPasajeros": 3,
+        "ciudadDestino": "Londres",
+        "activo": true
+    },
+    {
+        "fecha": "05/08/2026",
+        "precio": 390,
+        "ciudadOrigen": "Dubai",
+        "numeroDeVuelo": "EK911",
+        "cantPasajeros": 2,
+        "ciudadDestino": "Bangalore",
+        "activo": false
+    },
+    {
+        "fecha": "29/04/2026",
+        "precio": 410,
+        "ciudadOrigen": "Cancun",
+        "numeroDeVuelo": "AM665",
+        "cantPasajeros": 2,
+        "ciudadDestino": "Sidney",
+        "activo": true
+    }
+]
