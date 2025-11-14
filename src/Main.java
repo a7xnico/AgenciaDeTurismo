@@ -20,24 +20,24 @@ public class Main extends Application {
 
         AgenciaTurismo agenciaTurismo=new AgenciaTurismo();
 
-        ClienteRegular clienteRegular=new ClienteRegular("Baltasar","rodriguez","1","baltasaro@gmsil.com");
-        ClienteRegular clienteRegular1=new ClienteRegular("Franco","Alvarez","45","franalva@gmail.com");
-        ClienteRegular clienteRegular2=new ClienteRegular("Antonio","Fernandez","24","antofer@gmail.com");
-        ClienteRegular clienteRegular3=new ClienteRegular("Juan","Martinez","6","juanmar@gmail.com");
-        ClienteRegular clienteRegular4=new ClienteRegular("Lionel","Messi","9","liomessi@gmail.com");
-        ClienteRegular clienteRegular5=new ClienteRegular("Rodrigo","De paul","63","rodridepaul@gmail.com");
-        ClienteRegular clienteRegular6=new ClienteRegular("Emiliano","Martinez","48","dibumartinez@gmail.com");
+        Cliente clienteRegular=new ClienteRegular("Baltasar","rodriguez","1","baltasaro@gmsil.com");
+        Cliente clienteRegular1=new ClienteRegular("Franco","Alvarez","45","franalva@gmail.com");
+        Cliente clienteRegular2=new ClienteRegular("Antonio","Fernandez","24","antofer@gmail.com");
+        Cliente clienteRegular3=new ClienteRegular("Juan","Martinez","6","juanmar@gmail.com");
+        Cliente clienteRegular4=new ClienteRegular("Lionel","Messi","9","liomessi@gmail.com");
+        Cliente clienteRegular5=new ClienteRegular("Rodrigo","De paul","63","rodridepaul@gmail.com");
+        Cliente clienteRegular6=new ClienteRegular("Emiliano","Martinez","48","dibumartinez@gmail.com");
 
 
 
-        ClienteVIP clienteVIP=new ClienteVIP("Franco","Mastantuono","31","franmastantuono@gmail.com");
-        ClienteVIP clienteVIP1=new ClienteVIP("Julian","Alvarez","52","julialvarez@gmail.com");
-        ClienteVIP clienteVIP2=new ClienteVIP("Lautaro","Martinez","17","toromartinez@gmail.com");
-        ClienteVIP clienteVIP3=new ClienteVIP("Alexis","Mac Allister","13","alemac@gmail.com");
-        ClienteVIP clienteVIP4=new ClienteVIP("Enzo","Fernandez","66","enzofer@gmail.com");
-        ClienteVIP clienteVIP5=new ClienteVIP("Nicolas","Gonzalez","43","nicogonzalez@gmail.com");
-        ClienteVIP clienteVIP6=new ClienteVIP("Nicolas","Paz","72","nicopaz@gmail.com");
-        ClienteVIP clienteVIP7=new ClienteVIP("Franco","Armani","8","franarmani@gmail.com");
+        Cliente clienteVIP=new ClienteVIP("Franco","Mastantuono","31","franmastantuono@gmail.com");
+        Cliente clienteVIP1=new ClienteVIP("Julian","Alvarez","52","julialvarez@gmail.com");
+        Cliente clienteVIP2=new ClienteVIP("Lautaro","Martinez","17","toromartinez@gmail.com");
+        Cliente clienteVIP3=new ClienteVIP("Alexis","Mac Allister","13","alemac@gmail.com");
+        Cliente clienteVIP4=new ClienteVIP("Enzo","Fernandez","66","enzofer@gmail.com");
+        Cliente clienteVIP5=new ClienteVIP("Nicolas","Gonzalez","43","nicogonzalez@gmail.com");
+        Cliente clienteVIP6=new ClienteVIP("Nicolas","Paz","72","nicopaz@gmail.com");
+        Cliente clienteVIP7=new ClienteVIP("Franco","Armani","8","franarmani@gmail.com");
 
 
         Hotel hotel=new Hotel("The Ritz London","Londres",5,800,136);
